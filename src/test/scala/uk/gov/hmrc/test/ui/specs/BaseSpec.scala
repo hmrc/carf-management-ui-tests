@@ -14,8 +14,25 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.test.ui.specs
 
-import uk.gov.hmrc.selenium.component.PageObject
+import org.scalatest.featurespec.AnyFeatureSpec
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.{BeforeAndAfterEach, GivenWhenThen}
+import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
 
-trait BasePage extends PageObject {}
+trait BaseSpec
+    extends AnyFeatureSpec
+    with GivenWhenThen
+    with Matchers
+    with BeforeAndAfterEach
+    with Browser
+    with ScreenshotOnFailure {
+
+  override def beforeEach(): Unit =
+    startBrowser()
+
+  override def afterEach(): Unit =
+    quitBrowser()
+
+}
