@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.specs.tags
+package uk.gov.hmrc.test.ui.specs.tags
 
 import org.scalatest.Tag
 
-object ZapTests extends Tag("ZapTests")
+object SoloTests extends Tag("SoloTests")

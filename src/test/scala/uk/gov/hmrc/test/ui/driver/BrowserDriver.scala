@@ -14,8 +14,13 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.test.ui.driver
 
-import uk.gov.hmrc.selenium.component.PageObject
+import org.openqa.selenium.WebDriver
+import uk.gov.hmrc.selenium.webdriver.Driver
 
-trait BasePage extends PageObject {}
+trait BrowserDriver {
+
+  implicit def driver: WebDriver = Driver.instance
+
+}

@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.conf
+package uk.gov.hmrc.test.ui.conf
 
 import com.typesafe.config.{Config, ConfigFactory}
+
 object TestConfiguration {
   val config: Config        = ConfigFactory.load()
   val env: String           = config.getString("environment")

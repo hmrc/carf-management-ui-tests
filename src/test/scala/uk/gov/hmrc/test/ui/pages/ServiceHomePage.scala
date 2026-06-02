@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.driver
+package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.WebDriver
-import uk.gov.hmrc.selenium.webdriver.Driver
+import org.openqa.selenium.By
 
-trait BrowserDriver {
+object ServiceHomePage extends BasePage {
+  override val pageUrl: String = baseUrl
 
-  implicit def driver: WebDriver = Driver.instance
+  val changeContactDetailsChangeLink: By = By.cssSelector("a[href*=\"/change-contact\"]")
 
 }
