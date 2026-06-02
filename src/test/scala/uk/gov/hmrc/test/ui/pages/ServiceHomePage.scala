@@ -16,7 +16,12 @@
 
 package uk.gov.hmrc.test.ui.pages
 
+import org.openqa.selenium.By
+
 object ServiceHomePage extends BasePage {
-  override val pageUrl: String = baseUrl 
+  override val pageUrl: String = baseUrl
+
+  val changeContactDetailsChangeLink: By = By.cssSelector("a[href*=\"/change-contact\"]")
+
 
 }

@@ -45,6 +45,11 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
   def onPage(pageUrl: String = this.pageUrl, timeoutSeconds: Long = 3): Unit =
     fluentWait(timeoutSeconds).until(ExpectedConditions.urlToBe(pageUrl))
 
+  def clickOnLink(link: By): Unit = {
+    onPage()
+    click(link)
+  }
+
   def selectDropdownById(id: By): Select = new Select(driver.findElement(id: By))
 
 
