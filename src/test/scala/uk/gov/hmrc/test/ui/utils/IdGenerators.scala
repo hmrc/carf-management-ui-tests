@@ -21,15 +21,15 @@ import uk.gov.hmrc.domain.{Generator, SaUtrGenerator}
 trait IdGenerators {
 
   val randomisedNino: String = new Generator().nextNino.toString()
-  val randomisedUtr: String  = new SaUtrGenerator().nextSaUtr.toString()
+  val randomisedUtr: String = new SaUtrGenerator().nextSaUtr.toString()
 
   // prefixes
-  val autoMatchedCtUtrForUK: String         = "111"
-  val autoMatchedCtUtrOutsideUK: String     = "222"
+  val autoMatchedCtUtrForUK: String = "111"
+  val autoMatchedCtUtrOutsideUK: String = "222"
   val unMatchedCtUtrForBusinessName: String = "888"
-  val individualNino: String                = "AA1"
-  val matchedSaUtr: String                  = "111"
-  val unmatchedSaUtr: String                = "888"
+  val individualNino: String = "AA1"
+  val matchedSaUtr: String = "111"
+  val unmatchedSaUtr: String = "888"
 
   def generateUtr(prefix: String): String =
     prefix + randomisedUtr.substring(3)

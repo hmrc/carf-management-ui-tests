@@ -29,8 +29,7 @@ import uk.gov.hmrc.test.ui.utils.IdGenerators
 import java.time.Duration
 
 
-
-trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageObject  {
+trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageObject {
   val pageUrl: String
   val baseUrl: String = TestConfiguration.url("carf-management-frontend")
 

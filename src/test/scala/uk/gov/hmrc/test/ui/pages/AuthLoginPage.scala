@@ -74,7 +74,7 @@ object AuthLoginPage extends BasePage {
 
   def loginAsOrgAdminWithCtUtr(carfId: String): ServiceHomePage.type = {
     submitAuth("Organisation", "User")(
-      addCtPreset(), 
+      addCtPreset(),
       addCarfId(carfId)
     )
     ServiceHomePage
