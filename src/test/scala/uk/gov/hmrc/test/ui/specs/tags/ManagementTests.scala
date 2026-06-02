@@ -14,13 +14,8 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.driver
+package uk.gov.hmrc.test.ui.specs.tags
 
-import org.openqa.selenium.WebDriver
-import uk.gov.hmrc.selenium.webdriver.Driver
+import org.scalatest.Tag
 
-trait BrowserDriver {
-
-  implicit def driver: WebDriver = Driver.instance
-
-}
+object ManagementTests extends Tag("ManagementTests")

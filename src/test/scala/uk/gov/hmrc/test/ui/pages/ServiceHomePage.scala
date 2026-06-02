@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.specs.tags
+package uk.gov.hmrc.test.ui.pages
 
-import org.scalatest.Tag
+object ServiceHomePage extends BasePage {
+  override val pageUrl: String = baseUrl 
 
-object SoloTests extends Tag("SoloTests")
+}

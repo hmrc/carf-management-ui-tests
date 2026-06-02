@@ -15,13 +15,37 @@
  */
 
 package uk.gov.hmrc.test.ui.pages
-import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
 
+import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.selenium.component.PageObject
+import uk.gov.hmrc.test.ui.conf.TestConfiguration
+import uk.gov.hmrc.test.ui.driver.BrowserDriver
+import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Select, Wait}
+import org.openqa.selenium.{By, WebDriver}
+import uk.gov.hmrc.selenium.webdriver.Driver
+import uk.gov.hmrc.test.ui.utils.IdGenerators
 
-trait BasePage extends PageObject {
+import java.time.Duration
+
+
+
+trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageObject  {
   val pageUrl: String
-  val baseUrl: String = TestConfiguration.url("carf-registration-frontend")
-  
+  val baseUrl: String = TestConfiguration.url("carf-management-frontend")
+
+  def navigateTo(url: String): Unit = driver.navigate().to(url)
+
+  private def fluentWait(timeoutSeconds: Long = 8): Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
+    .withTimeout(Duration.ofSeconds(timeoutSeconds))
+    .pollingEvery(Duration.ofMillis(200))
+    .ignoring(classOf[org.openqa.selenium.StaleElementReferenceException])
+    .ignoring(classOf[org.openqa.selenium.NoSuchElementException])
+
+  def onPage(pageUrl: String = this.pageUrl, timeoutSeconds: Long = 3): Unit =
+    fluentWait(timeoutSeconds).until(ExpectedConditions.urlToBe(pageUrl))
+
+  def selectDropdownById(id: By): Select = new Select(driver.findElement(id: By))
+
+
 }
