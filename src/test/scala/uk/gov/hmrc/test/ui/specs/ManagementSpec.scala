@@ -3,7 +3,6 @@ package uk.gov.hmrc.test.ui.specs
 import uk.gov.hmrc.test.ui.specs.tags.{ManagementTests, ZapTests}
 import uk.gov.hmrc.test.ui.pages.*
 
-
 class ManagementSpec extends BaseSpec {
   Feature("Organisation CARF Registration") {
 

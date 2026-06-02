@@ -16,7 +16,6 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-
 import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
@@ -27,7 +26,6 @@ import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.test.ui.utils.IdGenerators
 
 import java.time.Duration
-
 
 trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageObject {
   val pageUrl: String
@@ -50,6 +48,5 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
   }
 
   def selectDropdownById(id: By): Select = new Select(driver.findElement(id: By))
-
 
 }

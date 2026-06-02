@@ -23,5 +23,4 @@ object ServiceHomePage extends BasePage {
 
   val changeContactDetailsChangeLink: By = By.cssSelector("a[href*=\"/change-contact\"]")
 
-
 }
