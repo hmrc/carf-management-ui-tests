@@ -21,7 +21,7 @@ import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
 object AuthLoginPage extends BasePage {
   override val pageUrl: String    = TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
-  private val redirectUrl: String = TestConfiguration.url("carf-management-frontend")
+  private val redirectUrl: String = TestConfiguration.url("carf-management-frontend") + "/manage-cryptoasset-reports"
 
   private val redirectionUrlById: By     = By.id("redirectionUrl")
   private val affinityGroupById: By      = By.id("affinityGroupSelect")

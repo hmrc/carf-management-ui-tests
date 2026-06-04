@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2026 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,9 +18,17 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
 
-object ServiceHomePage extends BasePage {
-  override val pageUrl: String = baseUrl + "/manage-cryptoasset-reports"
+object OrganizationNamePage extends BasePage {
+  override val pageUrl: String = baseUrl + "/organisation-name"
 
-  val changeContactDetailsChangeLink: By = By.cssSelector("a[href*=\"/change-contact\"]")
+  def orgNamePage: this.type = { // TODO: Remove this method once Organization name page navigation is implemented
+    driver.navigate().to(pageUrl)
+    onPage()
+    this
+  }
 
+  private val orgNameInput = By.id("value")
+
+  def enterOrgName(orgNameValue: String): Unit =
+    fillFieldsAndContinue((orgNameInput, orgNameValue))
 }
