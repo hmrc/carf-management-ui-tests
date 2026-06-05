@@ -18,10 +18,10 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
 
-object OrganizationNamePage extends BasePage {
+object OrganisationNamePage extends BasePage {
   override val pageUrl: String = baseUrl + "/organisation-name"
 
-  def orgNamePage: this.type = { // TODO: Remove this method once Organization name page navigation is implemented
+  def orgNamePage: this.type = { // TODO: Remove this method once Organisation name page navigation is implemented
     driver.navigate().to(pageUrl)
     onPage()
     this

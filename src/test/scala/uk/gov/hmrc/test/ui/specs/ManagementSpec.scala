@@ -32,17 +32,17 @@ class ManagementSpec extends BaseSpec {
 
     Scenario("2 - Organisation name journey", ManagementTests, ZapTests) { // TODO: Update scenario name to relevant test case journey
       Given("the Organisation user logs in with a valid CARF ID")
-      AuthLoginPage.loginAsOrgAdminWithCtUtr("1234")
+      AuthLoginPage.loginAsOrgAdminWithCtUtr("R112")
       And("the organisation user navigates to 'organization name' page")
-      OrganizationNamePage.orgNamePage // TODO: Update the navigation page, currently it goes direct to Organisation name url
+      OrganisationNamePage.orgNamePage // TODO: Update the navigation page, currently it goes direct to Organisation name url
       And("the Organisation user enters organization name on 'organization name' page")
-      OrganizationNamePage.enterOrgName("Hello World Ltd")
+      OrganisationNamePage.enterOrgName("Hello World Ltd")
       And("the Organisation user selects 'Yes' in the 'have trading name' page ")
       HaveTradingNamePage.select("Yes")
       And("the Organization user enters trading name on 'trading name' page")
       TradingNamePage.enterTradingName("New World Ltd")
       And("the Organization user redirect to 'is your business correct' page")
-      IsTheBusinessCorrectPage.onPage()
+      IsTheAddressCorrectPage.onPage()
     }
   }
 }
