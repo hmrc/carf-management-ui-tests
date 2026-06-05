@@ -16,22 +16,27 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.scalatest.matchers.should.Matchers
-import uk.gov.hmrc.selenium.component.PageObject
-import uk.gov.hmrc.test.ui.conf.TestConfiguration
-import uk.gov.hmrc.test.ui.driver.BrowserDriver
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Select, Wait}
 import org.openqa.selenium.{By, WebDriver}
+import org.scalatest.matchers.should.Matchers
+import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
+import uk.gov.hmrc.test.ui.conf.TestConfiguration
+import uk.gov.hmrc.test.ui.driver.BrowserDriver
 import uk.gov.hmrc.test.ui.utils.IdGenerators
 
 import java.time.Duration
+import scala.jdk.CollectionConverters.*
 
 trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageObject {
-  val pageUrl: String
-  val baseUrl: String = TestConfiguration.url("carf-management-frontend")
 
+  val pageUrl: String
+  val baseUrl: String               = TestConfiguration.url("carf-management-frontend")
   def navigateTo(url: String): Unit = driver.navigate().to(url)
+
+  val continueButtonId: By = By.id("continue")
+  val yesRadioId: By       = By.id("value")
+  val noRadioId: By        = By.id("value-no")
 
   private def fluentWait(timeoutSeconds: Long = 8): Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
     .withTimeout(Duration.ofSeconds(timeoutSeconds))
@@ -48,5 +53,37 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
   }
 
   def selectDropdownById(id: By): Select = new Select(driver.findElement(id: By))
+
+  def fillFields(fieldData: (By, String)*): Unit = {
+    onPage()
+    fieldData.foreach { case (locator, value) => sendKeys(locator, value) }
+  }
+
+  def fillFieldsAndContinue(fieldData: (By, String)*): Unit = {
+    fillFields(fieldData: _*)
+    click(continueButtonId)
+  }
+
+  def select(option: String, pageUrl: String = this.pageUrl): Unit = {
+    onPage(pageUrl)
+
+    val radioId = option.trim.toLowerCase match {
+      case "yes" => yesRadioId
+      case "no"  => noRadioId
+      case other => throw new IllegalArgumentException(s"Invalid option: '$other'. Use 'Yes' or 'No'.")
+    }
+
+    assertLocatorPresent(radioId)
+    click(radioId)
+    click(continueButtonId)
+  }
+
+  protected def assertLocatorPresent(locator: By): Unit = {
+    val elements = Driver.instance.findElements(locator).asScala
+    require(
+      elements.nonEmpty,
+      s"Expected element with locator [$locator] to be present, but none was found"
+    )
+  }
 
 }
