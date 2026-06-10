@@ -3,6 +3,14 @@
     {
       "path": "/test-only/",
       "reason": "Test-only endpoints do not need accessibility testing as they are used purely for testing purposes."
+    },
+    {
+      "path": "/placeholder?",
+      "reason": "Place holder urls will be replaced later in the development"
+    },
+    {
+      "path": "/auth-login-stub/",
+      "reason": "Dummy login service used for local testing"
     }
   ]
 }
