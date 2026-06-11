@@ -46,8 +46,8 @@ class ManagementSpec extends BaseSpec {
       HaveTradingNamePage.select("Yes")
       And("the Organization user enters trading name on '/trading-name' page")
       TradingNamePage.enterTradingName("New World Ltd")
-      And("the Organization user redirect to '/is-the-address-correct' page")
-      IsTheAddressCorrectPage.onPage()
+      And("the Organisation user is redirected to '/utr' page")
+      UtrPage.onPage()
     }
 
     Scenario("3 - Individual without any RCASPs added", ManagementTests, ZapTests) {
