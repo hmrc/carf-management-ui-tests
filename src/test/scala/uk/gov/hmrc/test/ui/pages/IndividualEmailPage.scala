@@ -16,9 +16,19 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object IsTheAddressCorrectPage extends BasePage {
-  override val pageUrl: String =
-    baseUrl + "/placeholder?message=If+is+RCASP+user+%3D+true%2C+nav+to+%2Fis-the-address-correct%2C+else+nav+to+%2Futr+%28CARF-197%29"
-//TODO: change url after implemnation of CARF-197
+import org.openqa.selenium.By
 
+object IndividualEmailPage extends BasePage {
+  override val pageUrl: String = baseUrl + "/individual-email"
+
+  def indEmailPage: this.type = { // TODO: Remove this method once the previous pages are implemented
+    driver.navigate().to(pageUrl)
+    onPage()
+    this
+  }
+
+  private val indEmailID = By.id("value")
+
+  def enterIndEmail(emailValue: String): Unit =
+    fillFieldsAndContinue((indEmailID, emailValue))
 }
