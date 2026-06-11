@@ -53,12 +53,12 @@ class ManagementSpec extends BaseSpec {
     Scenario("3 - Individual without any RCASPs added", ManagementTests, ZapTests) {
       Given("the Individual user logs in with a valid CARF ID")
       AuthLoginPage.loginAsInd("8210")
-      Thread.sleep(5000)  // TODO: Remove once the previous pages are ready and we can navigate through the journey
+      Thread.sleep(5000) // TODO: Remove once the previous pages are ready and we can navigate through the journey
       And("the Individual user navigates to '/individual-name' page")
       IndividualNamePage.indNamePage // TODO: Update the navigation once previous pages are built; currently it goes directly to /individual-name page
       And("the Individual user enters first name and last name on the '/individual-name' page")
       IndividualNamePage.enterIndName("John", "Doe")
-      Thread.sleep(5000)  // TODO: Remove once the previous pages are ready and we can navigate through the journey
+      Thread.sleep(5000) // TODO: Remove once the previous pages are ready and we can navigate through the journey
       And("the Individual user navigates to '/individual-email' page")
       IndividualEmailPage.indEmailPage // TODO: Update the navigation once previous pages are built; currently it goes directly to /individual-email page
       And("the Individual user enters their email on the '/individual-email' page")
