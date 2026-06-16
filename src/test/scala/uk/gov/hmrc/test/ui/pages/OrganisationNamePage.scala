@@ -21,12 +21,6 @@ import org.openqa.selenium.By
 object OrganisationNamePage extends BasePage {
   override val pageUrl: String = baseUrl + "/organisation-name"
 
-  def orgNamePage: this.type = { // TODO: Remove this method once Organisation name page navigation is implemented
-    driver.navigate().to(pageUrl)
-    onPage()
-    this
-  }
-
   private val orgNameInput = By.id("value")
 
   def enterOrgName(orgNameValue: String): Unit =

@@ -31,29 +31,49 @@ class ManagementSpec extends BaseSpec {
     Scenario("1 - Organisation user with CT-UTR enrolment, without any RCASPs added", ManagementTests, ZapTests) {
       Given("the Organisation user logs in with a valid CARF ID and CT UTR")
       AuthLoginPage.loginAsOrgAdminWithCtUtr("R1110")
+      And("the Organisation user clicks 'add a reporting cryptoasset service provider (RCASP)' link")
+      ServiceHomePage.clickOnLink(ServiceHomePage.addRcaspLink)
+      And("the Organisation user selects 'Yes' in the '/report-for-registered-business' page ")
+      ReportForRegisteredBusiness.select("Yes")
+      And("the Organisation user selects 'Yes' in the 'registered-business/is-this-your-business-name' page")
+      IsThisYourBusinessNamePage.select("Yes")
+      And("the Organisation user selects 'Yes' in the '/have-trading-name' page ")
+      HaveTradingNamePage.select("Yes")
+      And("the Organization user enters trading name on '/trading-name' page")
+      TradingNamePage.enterTradingName("New World Ltd")
+      And("the Organisation user is redirected to '/is-the-address-correct' page")
+      IsTheAddressCorrectPage.onPage()
       // TODO: Continue journey as pages are built
     }
 
     Scenario("2 - Organisation user without CT-UTR enrolment, with RCASPs added", ManagementTests, ZapTests) {
       Given("the Organisation user logs in with a valid CARF ID")
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr("R1112")
-      Thread.sleep(5000) // TODO: Remove once the previous pages are ready and we can navigate through the journey
-      And("the organisation user navigates to '/organisation-name' page")
-      OrganisationNamePage.orgNamePage // TODO: Update the navigation page, currently it goes direct to Organisation name url
+      And("the Organisation user clicks 'add an RCASP' link")
+      ServiceHomePage.clickOnLink(ServiceHomePage.addRcaspLink)
+      And("the Organisation user selects 'Organisation' on '/organisation-or-individual' page")
+      OrganisationOrIndividualPage.selectRcaspType("Organisation")
       And("the Organisation user enters organisation name on '/organisation-name' page")
       OrganisationNamePage.enterOrgName("Hello World Ltd")
       And("the Organisation user selects 'Yes' in the '/have-trading-name' page ")
       HaveTradingNamePage.select("Yes")
       And("the Organization user enters trading name on '/trading-name' page")
       TradingNamePage.enterTradingName("New World Ltd")
-      And("the Organisation user is redirected to '/utr' page")
-      UtrPage.onPage()
+      And("the Organisation user is redirected to '/is-the-address-correct' page")
+      IsTheAddressCorrectPage.onPage()
+      // TODO: Continue journey as pages are built
     }
 
     Scenario("3 - Individual without any RCASPs added", ManagementTests, ZapTests) {
       Given("the Individual user logs in with a valid CARF ID")
       AuthLoginPage.loginAsInd("8210")
       Thread.sleep(5000) // TODO: Remove once the previous pages are ready and we can navigate through the journey
+
+      And("the Individual user clicks 'add a reporting cryptoasset service provider (RCASP)' link")
+      ServiceHomePage.clickOnLink(ServiceHomePage.addRcaspLink)
+
+      And("the Individual user selects 'Individual' on '/organisation-or-individual' page")
+      OrganisationOrIndividualPage.selectRcaspType("Individual")
 
       And("the Individual user navigates to '/individual-name' page")
       IndividualNamePage.indNamePage // TODO: Update the navigation once previous pages are built; currently it goes directly to /individual-name page
