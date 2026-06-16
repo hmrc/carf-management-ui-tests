@@ -62,21 +62,33 @@ class ManagementSpec extends BaseSpec {
       And("the Organisation user is redirected to '/is-the-address-correct' page")
       IsTheAddressCorrectPage.onPage()
       // TODO: Continue journey as pages are built
+      Thread.sleep(5000) // TODO: Remove once the previous pages are ready and we can navigate through the journey
+      And("the Organization user navigates to '/have-second-contact' page") // TODO: Update the navigation once previous pages are built; currently it goes directly to /have-second-contact page
+      HaveSecondContactPage.navigateToHaveSecondContactPage
+      And("the Organisation user selects 'Yes' in the '/have-second-contact' page")
+      HaveSecondContactPage.select("Yes")
+      And("the Organisation user enters second contact name in '/second-contact-name' page")
+      SecondContactNamePage.enterSecondContactName("Tax Test Team")
+      And("the Organisation user enters second contact email in '/second-contact-email' page")
+      SecondContactEmailPage.enterEmailAddress("tax.team@gmail.com")
+      And("the Organisation user selects 'Yes' in the '/second-contact-have-phone' page")
+      SecondContactHavePhonePage.select("Yes")
+      And("the Organisation user enters phone number in '/second-contact-phone' page")
+      SecondContactPhonePage.enterPhoneNumber("07960123454")
+      And("the Organisation user is on '/check-your-answers' page")
+      CheckAnswersPage.onPage()
+
     }
 
     Scenario("3 - Individual without any RCASPs added", ManagementTests, ZapTests) {
       Given("the Individual user logs in with a valid CARF ID")
       AuthLoginPage.loginAsInd("8210")
-      Thread.sleep(5000) // TODO: Remove once the previous pages are ready and we can navigate through the journey
 
       And("the Individual user clicks 'add a reporting cryptoasset service provider (RCASP)' link")
       ServiceHomePage.clickOnLink(ServiceHomePage.addRcaspLink)
 
       And("the Individual user selects 'Individual' on '/organisation-or-individual' page")
       OrganisationOrIndividualPage.selectRcaspType("Individual")
-
-      And("the Individual user navigates to '/individual-name' page")
-      IndividualNamePage.indNamePage // TODO: Update the navigation once previous pages are built; currently it goes directly to /individual-name page
 
       And("the Individual user enters first name and last name on the '/individual-name' page")
       IndividualNamePage.enterIndName("John", "Doe")
