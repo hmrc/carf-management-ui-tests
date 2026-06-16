@@ -22,5 +22,6 @@ object ServiceHomePage extends BasePage {
   override val pageUrl: String = baseUrl + "/manage-cryptoasset-reports"
 
   val changeContactDetailsChangeLink: By = By.cssSelector("a[href*=\"/change-contact\"]")
+  val addRcaspLink: By                   = By.cssSelector("a[href='/rcasp']")
 
 }

@@ -78,6 +78,12 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     click(continueButtonId)
   }
 
+  def selectRadioAndContinue(id: By): Unit = {
+    onPage()
+    click(id)
+    click(continueButtonId)
+  }
+
   protected def assertLocatorPresent(locator: By): Unit = {
     val elements = Driver.instance.findElements(locator).asScala
     require(
