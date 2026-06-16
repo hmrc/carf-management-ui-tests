@@ -63,7 +63,9 @@ class ManagementSpec extends BaseSpec {
       IsTheAddressCorrectPage.onPage()
       // TODO: Continue journey as pages are built
       Thread.sleep(5000) // TODO: Remove once the previous pages are ready and we can navigate through the journey
-      And("the Organization user navigates to '/have-second-contact' page") // TODO: Update the navigation once previous pages are built; currently it goes directly to /have-second-contact page
+      And(
+        "the Organization user navigates to '/have-second-contact' page"
+      ) // TODO: Update the navigation once previous pages are built; currently it goes directly to /have-second-contact page
       HaveSecondContactPage.navigateToHaveSecondContactPage
       And("the Organisation user selects 'Yes' in the '/have-second-contact' page")
       HaveSecondContactPage.select("Yes")
