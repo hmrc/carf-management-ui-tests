@@ -17,6 +17,6 @@
 package uk.gov.hmrc.test.ui.pages
 
 object IndividualHavePhonePage extends BasePage {
-  override val pageUrl: String = baseUrl + "/individual-have-phone"
+  override val pageUrl: String = baseUrl + "/manage-your-rcasps/individual-have-phone"
 
 }

@@ -18,6 +18,6 @@ package uk.gov.hmrc.test.ui.pages
 
 object UtrPage extends BasePage {
   override val pageUrl: String =
-    baseUrl + "/placeholder?message=If+is+RCASP+user+%3D+true%2C+nav+to+%2Fis-the-address-correct%2C+else+nav+to+%2Futr+%28CARF-197%29" // TODO: change url after implementation of CARF-197
+    baseUrl + "/manage-your-rcasps/placeholder?message=If+is+RCASP+user+%3D+true%2C+nav+to+%2Fis-the-address-correct%2C+else+nav+to+%2Futr+%28CARF-197%29" // TODO: change url after implementation of CARF-197
 
 }

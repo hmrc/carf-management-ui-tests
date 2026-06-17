@@ -17,6 +17,6 @@
 package uk.gov.hmrc.test.ui.pages
 
 object HaveTradingNamePage extends BasePage {
-  override val pageUrl: String = baseUrl + "/have-trading-name"
+  override val pageUrl: String = baseUrl + "/manage-your-rcasps/have-trading-name"
 
 }

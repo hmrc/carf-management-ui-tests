@@ -20,7 +20,7 @@ import org.openqa.selenium.By
 
 object TradingNamePage extends BasePage {
 
-  override val pageUrl: String = baseUrl + "/trading-name"
+  override val pageUrl: String = baseUrl + "/manage-your-rcasps/trading-name"
 
   private val tradingNameInput = By.id("value")
 

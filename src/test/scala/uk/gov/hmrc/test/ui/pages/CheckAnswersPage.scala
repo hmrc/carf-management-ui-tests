@@ -17,6 +17,7 @@
 package uk.gov.hmrc.test.ui.pages
 
 object CheckAnswersPage extends BasePage {
-  override val pageUrl: String = baseUrl + "/placeholder?message=Should+nav+to+%2Fcheck-answers+%28CARF-540%29"
+  override val pageUrl: String =
+    baseUrl + "/manage-your-rcasps/placeholder?message=Should+nav+to+%2Fcheck-answers+%28CARF-540%29"
 
 }
