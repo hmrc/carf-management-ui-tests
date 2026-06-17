@@ -4,7 +4,7 @@ import org.openqa.selenium.By
 
 object SecondContactPhonePage extends BasePage {
 
-  override val pageUrl: String = baseUrl + "/second-contact-phone"
+  override val pageUrl: String = baseUrl + "manage-your-rcasps/second-contact-phone"
 
   private val phoneNumberInput = By.id("value")
 

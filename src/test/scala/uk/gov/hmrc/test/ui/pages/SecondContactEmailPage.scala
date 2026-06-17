@@ -4,7 +4,7 @@ import org.openqa.selenium.By
 
 object SecondContactEmailPage extends BasePage {
 
-  override val pageUrl: String = baseUrl + "/second-contact-email"
+  override val pageUrl: String = baseUrl + "manage-your-rcasps/second-contact-email"
 
   private val emailInputInput = By.id("value")
 
