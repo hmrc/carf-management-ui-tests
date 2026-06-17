@@ -19,7 +19,7 @@ package uk.gov.hmrc.test.ui.pages
 import org.openqa.selenium.By
 
 object OrganisationNamePage extends BasePage {
-  override val pageUrl: String = baseUrl + "manage-your-rcasps/organisation-name"
+  override val pageUrl: String = baseUrl + "/manage-your-rcasps/organisation-name"
 
   private val orgNameInput = By.id("value")
 

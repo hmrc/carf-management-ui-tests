@@ -3,7 +3,7 @@ package uk.gov.hmrc.test.ui.pages
 import org.openqa.selenium.By
 
 object OrganisationOrIndividualPage extends BasePage {
-  override val pageUrl: String = baseUrl + "manage-your-rcasps/organisation-or-individual"
+  override val pageUrl: String = baseUrl + "/manage-your-rcasps/organisation-or-individual"
 
   private val organisationRadioId = By.id("value_0")
   private val individualRadioId   = By.id("value_1")

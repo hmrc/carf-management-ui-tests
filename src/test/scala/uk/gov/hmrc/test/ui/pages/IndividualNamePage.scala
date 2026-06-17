@@ -19,7 +19,7 @@ package uk.gov.hmrc.test.ui.pages
 import org.openqa.selenium.By
 
 object IndividualNamePage extends BasePage {
-  override val pageUrl: String = baseUrl + "manage-your-rcasps/individual-name"
+  override val pageUrl: String = baseUrl + "/manage-your-rcasps/individual-name"
 
   def indNamePage: this.type = { // TODO: Remove this method once the previous pages are implemented
     driver.navigate().to(pageUrl)
