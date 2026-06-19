@@ -77,7 +77,6 @@ class ManagementSpec extends BaseSpec {
       PhonePage.enterPhone("07556734510")
 
       And("the Organisation user selects 'Yes' in the '/have-second-contact' page")
-      HaveSecondContactPage.navigateToHaveSecondContactPage // TODO: Remove the method
       HaveSecondContactPage.select("Yes")
 
       And("the Organisation user enters second contact name in '/second-contact-name' page")
