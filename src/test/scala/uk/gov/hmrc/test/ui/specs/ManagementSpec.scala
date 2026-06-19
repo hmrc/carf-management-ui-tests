@@ -63,12 +63,22 @@ class ManagementSpec extends BaseSpec {
       IsTheAddressCorrectPage.onPage()
       // TODO: Continue journey as pages are built
       Thread.sleep(5000) // TODO: Remove once the previous pages are ready and we can navigate through the journey
-      And(
-        "the Organization user navigates to '/have-second-contact' page"
-      ) // TODO: Update the navigation once previous pages are built; currently it goes directly to /have-second-contact page
-      HaveSecondContactPage.navigateToHaveSecondContactPage
+      And("the Organisation user enters team name in '/contact-name' page")
+      ContactNamePage.navigateToContactNamePage // TODO: Remove the method
+      ContactNamePage.enterContactName("Carf Team")
+
+      And("the Organisation user enters email in '/manage-your-rcasps/email' page")
+      EmailPage.enterEmail("carf.team@outlook.com")
+
+      And("the Organisation user selects 'Yes' in the '/have-phone' page")
+      HavePhonePage.select("Yes")
+
+      And("the Organisation user enters phone number in the '/phone' page")
+      PhonePage.enterPhone("07556734510")
+
       And("the Organisation user selects 'Yes' in the '/have-second-contact' page")
       HaveSecondContactPage.select("Yes")
+
       And("the Organisation user enters second contact name in '/second-contact-name' page")
       SecondContactNamePage.enterSecondContactName("Tax Test Team")
       And("the Organisation user enters second contact email in '/second-contact-email' page")

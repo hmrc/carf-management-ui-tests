@@ -37,6 +37,7 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
   val continueButtonId: By = By.id("continue")
   val yesRadioId: By       = By.id("value")
   val noRadioId: By        = By.id("value-no")
+  val inputId: By          = By.id("value")
 
   private def fluentWait(timeoutSeconds: Long = 8): Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
     .withTimeout(Duration.ofSeconds(timeoutSeconds))
