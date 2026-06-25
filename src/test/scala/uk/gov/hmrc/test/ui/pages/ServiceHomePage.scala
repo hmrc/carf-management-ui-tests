@@ -23,5 +23,6 @@ object ServiceHomePage extends BasePage {
 
   val changeContactDetailsChangeLink: By = By.cssSelector("a[href*=\"/change-contact\"]")
   val addRcaspLink: By                   = By.cssSelector("a[href='/manage-your-rcasps']")
+  val manageYourRcaspsLink: By           = By.cssSelector("a[href='/manage-your-rcasps/your-rcasps']")
 
 }
