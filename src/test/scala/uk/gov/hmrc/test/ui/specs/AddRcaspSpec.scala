@@ -31,16 +31,22 @@ class AddRcaspSpec extends BaseSpec {
     Scenario("1 - Organisation user with CT-UTR enrolment, without any RCASPs added", ManagementTests, ZapTests) {
       Given("the Organisation user logs in with a valid CARF ID and CT UTR")
       AuthLoginPage.loginAsOrgAdminWithCtUtr("R1110")
+
       And("the Organisation user clicks 'add a reporting cryptoasset service provider (RCASP)' link")
       ServiceHomePage.clickOnLink(ServiceHomePage.addRcaspLink)
+
       And("the Organisation user selects 'Yes' in the '/report-for-registered-business' page ")
       ReportForRegisteredBusiness.select("Yes")
+
       And("the Organisation user selects 'Yes' in the 'registered-business/is-this-your-business-name' page")
       IsThisYourBusinessNamePage.select("Yes")
+
       And("the Organisation user selects 'Yes' in the '/have-trading-name' page ")
       HaveTradingNamePage.select("Yes")
+
       And("the Organization user enters trading name on '/trading-name' page")
       TradingNamePage.enterTradingName("New World Ltd")
+
       And("the Organisation user is redirected to '/is-the-address-correct' page")
       IsTheAddressCorrectPage.onPage()
       // TODO: Continue journey as pages are built
@@ -49,20 +55,38 @@ class AddRcaspSpec extends BaseSpec {
     Scenario("2 - Organisation user without CT-UTR enrolment, with RCASPs added", ManagementTests, ZapTests) {
       Given("the Organisation user logs in with a valid CARF ID")
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr("R1112")
+
       And("the Organisation user clicks 'add an RCASP' link")
       ServiceHomePage.clickOnLink(ServiceHomePage.addRcaspLink)
+
       And("the Organisation user selects 'Organisation' on '/organisation-or-individual' page")
       OrganisationOrIndividualPage.selectRcaspType("Organisation")
+
       And("the Organisation user enters organisation name on '/organisation-name' page")
       OrganisationNamePage.enterOrgName("Hello World Ltd")
+
       And("the Organisation user selects 'Yes' in the '/have-trading-name' page ")
       HaveTradingNamePage.select("Yes")
+
       And("the Organization user enters trading name on '/trading-name' page")
       TradingNamePage.enterTradingName("New World Ltd")
-      And("the Organisation user is redirected to '/is-the-address-correct' page")
-      IsTheAddressCorrectPage.onPage()
+
+      And("the Organisation user is redirected to '/utr' page")
+      UtrPage.onPage()
+
+      Thread.sleep(5000) // TODO: Remove once the utr page is built and we can navigate through the journey
+      And("the organisation user navigates to '/find-address' page")
+      FindAddressPage.navigateToFindAddressPage // TODO: Update the navigation once /utr page is built; currently it goes directly to /find-address page
+
+      And("the organisation user enters the postcode and property number in the '/find-address' page")
+      FindAddressPage.enterPostcodeAndProperty("ZZ01 1ZZ", "2")
+
+      And("the Organisation user is redirected to '/review-address' page")
+      ReviewAddressPage.onPage()
+
       // TODO: Continue journey as pages are built
       Thread.sleep(5000) // TODO: Remove once the previous pages are ready and we can navigate through the journey
+
       And("the Organisation user enters team name in '/contact-name' page")
       ContactNamePage.navigateToContactNamePage // TODO: Remove the method
       ContactNamePage.enterContactName("Carf Team")
@@ -81,15 +105,18 @@ class AddRcaspSpec extends BaseSpec {
 
       And("the Organisation user enters second contact name in '/second-contact-name' page")
       SecondContactNamePage.enterSecondContactName("Tax Test Team")
+
       And("the Organisation user enters second contact email in '/second-contact-email' page")
       SecondContactEmailPage.enterEmailAddress("tax.team@gmail.com")
+
       And("the Organisation user selects 'Yes' in the '/second-contact-have-phone' page")
       SecondContactHavePhonePage.select("Yes")
+
       And("the Organisation user enters phone number in '/second-contact-phone' page")
       SecondContactPhonePage.enterPhoneNumber("07960123454")
+
       And("the Organisation user is on '/check-your-answers' page")
       CheckAnswersPage.onPage()
-
     }
 
     Scenario("3 - Individual without any RCASPs added", ManagementTests, ZapTests) {
@@ -108,18 +135,25 @@ class AddRcaspSpec extends BaseSpec {
       And("the Individual user enters NI number on the '/ni-number' page")
       IndividualNiNumberPage.enterNiNumber("PB200807C")
 
-      And("the Individual user is taken to '/find-address' page")
-      FindAddressPage.onPage()
+      And("the Individual user enters the postcode on the '/find-address' page")
+      FindAddressPage.enterPostcodeAndProperty("ZZ01 1ZZ", "")
+
+      And("the Individual user is redirected to '/choose-address' page")
+      ChooseAddressPage.onPage()
 
       Thread.sleep(5000) // TODO: Remove once the previous pages are ready and we can navigate through the journey
       And("the Individual user navigates to '/individual-email' page")
-      IndividualEmailPage.indEmailPage // TODO: Update the navigation once previous pages are built; currently it goes directly to /individual-email page
+      IndividualEmailPage.navigateToIndEmailPage // TODO: Update the navigation once previous pages are built; currently it goes directly to /individual-email page
+
       And("the Individual user enters their email on the '/individual-email' page")
       IndividualEmailPage.enterIndEmail("john.doe@test.com")
+
       And("the Individual user selects 'Yes' on the '/individual-have-phone' page")
       IndividualHavePhonePage.select("yes")
+
       And("the Individual user enters their phone number on the '/individual-phone' page")
       IndividualPhonePage.enterIndPhone("01234567890")
+
       Then("the Individual user is taken to the '/check-answers' page")
       CheckAnswersPage.onPage()
     }

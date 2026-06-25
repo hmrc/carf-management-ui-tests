@@ -21,7 +21,7 @@ import org.openqa.selenium.By
 object IndividualEmailPage extends BasePage {
   override val pageUrl: String = baseUrl + "/manage-your-rcasps/individual-email"
 
-  def indEmailPage: this.type = { // TODO: Remove this method once the previous pages are implemented
+  def navigateToIndEmailPage: this.type = { // TODO: Remove this method once the previous pages are implemented
     driver.navigate().to(pageUrl)
     onPage()
     this
