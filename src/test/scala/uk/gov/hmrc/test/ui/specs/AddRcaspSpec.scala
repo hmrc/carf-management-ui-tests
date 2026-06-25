@@ -19,9 +19,9 @@ package uk.gov.hmrc.test.ui.specs
 import uk.gov.hmrc.test.ui.pages.*
 import uk.gov.hmrc.test.ui.specs.tags.{ManagementTests, ZapTests}
 
-class ManagementSpec extends BaseSpec {
+class AddRcaspSpec extends BaseSpec {
 
-  Feature("Organisation CARF Management home page") {
+  Feature("Add RCASPS journeys for Organisation & Individual") {
     // Scenarios covered
     // 1. "Organisation user with CT-UTR enrolment, without any RCASPs added"
     // 2. "Organisation user without CT-UTR enrolment, with RCASPs added"
