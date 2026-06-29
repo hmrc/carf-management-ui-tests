@@ -24,12 +24,8 @@ trait IdGenerators {
   val randomisedUtr: String  = new SaUtrGenerator().nextSaUtr.toString()
 
   // prefixes
-  val autoMatchedCtUtrForUK: String         = "111"
-  val autoMatchedCtUtrOutsideUK: String     = "222"
-  val unMatchedCtUtrForBusinessName: String = "888"
-  val individualNino: String                = "AA1"
-  val matchedSaUtr: String                  = "111"
-  val unmatchedSaUtr: String                = "888"
+  val autoMatchedCtUtrForUK: String     = "111"
+  val autoMatchedCtUtrOutsideUK: String = "666"
 
   def generateUtr(prefix: String): String =
     prefix + randomisedUtr.substring(3)

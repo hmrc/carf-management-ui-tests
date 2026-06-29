@@ -18,13 +18,10 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
 
-object UtrPage extends BasePage {
+object ProblemNotInUkPage extends BasePage {
   override val pageUrl: String =
-    baseUrl + "/manage-your-rcasps/utr"
+    baseUrl + "/manage-your-rcasps/problem/not-in-uk"
 
-  private val utrId = By.id("value")
-
-  def enterUtr(utrValue: String): Unit =
-    fillFieldsAndContinue((utrId, utrValue))
+  val reviewAndChangeLink: By = By.cssSelector("a[href*=\"/is-the-address-correct\"]")
 
 }

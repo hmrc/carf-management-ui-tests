@@ -16,15 +16,8 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
-
-object UtrPage extends BasePage {
+object RegisteredBusinessCheckAnswersPage extends BasePage {
   override val pageUrl: String =
-    baseUrl + "/manage-your-rcasps/utr"
-
-  private val utrId = By.id("value")
-
-  def enterUtr(utrValue: String): Unit =
-    fillFieldsAndContinue((utrId, utrValue))
+    baseUrl + "/manage-your-rcasps/placeholder?message=Should+nav+to+%2Fregistered-business%2Fcheck-answers+%28CARF-294%29"
 
 }
