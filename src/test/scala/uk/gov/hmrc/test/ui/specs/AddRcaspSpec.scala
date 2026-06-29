@@ -115,8 +115,14 @@ class AddRcaspSpec extends BaseSpec {
       And("the Organisation user enters phone number in '/second-contact-phone' page")
       SecondContactPhonePage.enterPhoneNumber("07960123454")
 
-      And("the Organisation user is on '/check-your-answers' page")
-      CheckAnswersPage.onPage()
+      And("the Organisation user clicks submit button on '/check-your-answers' page")
+      CheckAnswersPage.onPageSubmitById()
+
+      And("the Organisation user clicks Back to manage your cryptoasset report link")
+      RcaspAddedPage.clickOnLink(RcaspAddedPage.backToManageYourCryptoassetReportLink)
+
+      Then("the Organisation user is on '/manage-cryptoasset-reports' page")
+      ServiceHomePage.onPage()
     }
 
     Scenario("3 - Individual without any RCASPs added", ManagementTests, ZapTests) {
@@ -154,8 +160,14 @@ class AddRcaspSpec extends BaseSpec {
       And("the Individual user enters their phone number on the '/individual-phone' page")
       IndividualPhonePage.enterIndPhone("01234567890")
 
-      Then("the Individual user is taken to the '/check-answers' page")
-      CheckAnswersPage.onPage()
+      And("the Individual user clicks submit button on '/check-your-answers' page")
+      CheckAnswersPage.onPageSubmitById()
+
+      And("the Individual user clicks Back to manage your RCASPs link")
+      RcaspAddedPage.clickOnLink(RcaspAddedPage.backToManageYourRcaspLink)
+
+      Then("the Individual user is on '/your-rcasps' page")
+      YourRcaspsPage.onPage()
     }
   }
 }

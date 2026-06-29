@@ -35,6 +35,7 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
   def navigateTo(url: String): Unit = driver.navigate().to(url)
 
   val continueButtonId: By = By.id("continue")
+  val submitButtonId: By   = By.id("submit")
   val yesRadioId: By       = By.id("value")
   val noRadioId: By        = By.id("value-no")
   val inputId: By          = By.id("value")
@@ -93,4 +94,8 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     )
   }
 
+  def onPageSubmitById(): Unit = {
+    onPage()
+    click(submitButtonId)
+  }
 }
