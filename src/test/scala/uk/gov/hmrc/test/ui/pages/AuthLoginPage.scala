@@ -23,17 +23,18 @@ object AuthLoginPage extends BasePage {
   override val pageUrl: String    = TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
   private val redirectUrl: String = TestConfiguration.url("carf-management-frontend") + "/manage-cryptoasset-reports"
 
-  private val redirectionUrlById: By     = By.id("redirectionUrl")
-  private val affinityGroupById: By      = By.id("affinityGroupSelect")
-  private val credentialRoleById: By     = By.id("credential-role-select")
-  private val presetDropDownById: By     = By.id("presets-dropdown")
-  private val presetAddById: By          = By.id("add-preset")
-  private val identifierValueCtField: By = By.id("input-4-0-value")
-  private val enrolmentKeyField: By      = By.id("enrolment[0].name")
-  private val identifierNameField: By    = By.id("input-0-0-name")
-  private val identifierValueField: By   = By.id("input-0-0-value")
-  private val authSubmitById: By         = By.id("submit-top")
-  private val identifierCtValue: String  = generateUtr(autoMatchedCtUtrForUK)
+  private val redirectionUrlById: By         = By.id("redirectionUrl")
+  private val affinityGroupById: By          = By.id("affinityGroupSelect")
+  private val credentialRoleById: By         = By.id("credential-role-select")
+  private val presetDropDownById: By         = By.id("presets-dropdown")
+  private val presetAddById: By              = By.id("add-preset")
+  private val identifierValueCtField: By     = By.id("input-4-0-value")
+  private val enrolmentKeyField: By          = By.id("enrolment[0].name")
+  private val identifierNameField: By        = By.id("input-0-0-name")
+  private val identifierValueField: By       = By.id("input-0-0-value")
+  private val authSubmitById: By             = By.id("submit-top")
+  private val identifierCtValue: String      = generateUtr(autoMatchedCtUtrForUK)
+  private val identifierCtValueforCD: String = generateUtr(autoMatchedCtUtrOutsideUK)
 
   private def authLoginPage: this.type = {
     navigateTo(pageUrl)
@@ -47,10 +48,10 @@ object AuthLoginPage extends BasePage {
   private def selectCredentialRole(credentialRole: String): Unit =
     selectDropdownById(credentialRoleById).selectByVisibleText(credentialRole)
 
-  private def addCtPreset(): Unit =
+  private def addCtPreset(ctUtrValue: String): Unit =
     selectDropdownById(presetDropDownById).selectByVisibleText("CT")
     click(presetAddById)
-    sendKeys(identifierValueCtField, identifierCtValue)
+    sendKeys(identifierValueCtField, ctUtrValue)
 
   private def addCarfId(carfID: String): Unit =
     sendKeys(enrolmentKeyField, "HMRC-CARF-ORG")
@@ -78,11 +79,19 @@ object AuthLoginPage extends BasePage {
   }
 
   def loginAsOrgAdminWithCtUtr(carfId: String): ServiceHomePage.type = {
-    submitAuth("Organisation", "User")(
-      addCtPreset(),
-      addCarfId(carfId)
-    )
+    loginAsOrgAdmin(carfId, identifierCtValue)
     ServiceHomePage
   }
+
+  def loginAsOrgAdminOutsideUkWithCtUtr(carfId: String): ServiceHomePage.type = {
+    loginAsOrgAdmin(carfId, identifierCtValueforCD)
+    ServiceHomePage
+  }
+
+  private def loginAsOrgAdmin(carfId: String, ctUtrValue: String): Unit =
+    submitAuth("Organisation", "User")(
+      addCtPreset(ctUtrValue),
+      addCarfId(carfId)
+    )
 
 }

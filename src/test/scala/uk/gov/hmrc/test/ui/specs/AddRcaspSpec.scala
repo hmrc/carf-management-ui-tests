@@ -35,21 +35,23 @@ class AddRcaspSpec extends BaseSpec {
       And("the Organisation user clicks 'add a reporting cryptoasset service provider (RCASP)' link")
       ServiceHomePage.clickOnLink(ServiceHomePage.addRcaspLink)
 
-      And("the Organisation user selects 'Yes' in the '/report-for-registered-business' page ")
+      And("the Organisation user selects 'Yes' on the '/report-for-registered-business' page ")
       ReportForRegisteredBusiness.select("Yes")
 
-      And("the Organisation user selects 'Yes' in the 'registered-business/is-this-your-business-name' page")
+      And("the Organisation user selects 'Yes' on the 'registered-business/is-this-your-business-name' page")
       IsThisYourBusinessNamePage.select("Yes")
 
-      And("the Organisation user selects 'Yes' in the '/have-trading-name' page ")
+      And("the Organisation user selects 'Yes' on the '/have-trading-name' page ")
       HaveTradingNamePage.select("Yes")
 
-      And("the Organization user enters trading name on '/trading-name' page")
+      And("the Organisation user enters trading name in the '/trading-name' page")
       TradingNamePage.enterTradingName("New World Ltd")
 
-      And("the Organisation user is redirected to '/is-the-address-correct' page")
-      IsTheAddressCorrectPage.onPage()
-      // TODO: Continue journey as pages are built
+      And("the Organisation user selects 'Yes' on the '/is-the-address-correct' page")
+      IsTheAddressCorrectPage.select("yes")
+
+      Then("the Organisation user is routed to '/registered-business/check-answers' page")
+      RegisteredBusinessCheckAnswersPage.onPage()
     }
 
     Scenario("2 - Organisation user without CT-UTR enrolment, with RCASPs added", ManagementTests, ZapTests) {
@@ -59,24 +61,20 @@ class AddRcaspSpec extends BaseSpec {
       And("the Organisation user clicks 'add an RCASP' link")
       ServiceHomePage.clickOnLink(ServiceHomePage.addRcaspLink)
 
-      And("the Organisation user selects 'Organisation' on '/organisation-or-individual' page")
+      And("the Organisation user selects 'Organisation' on the '/organisation-or-individual' page")
       OrganisationOrIndividualPage.selectRcaspType("Organisation")
 
-      And("the Organisation user enters organisation name on '/organisation-name' page")
+      And("the Organisation user enters organisation name in the '/organisation-name' page")
       OrganisationNamePage.enterOrgName("Hello World Ltd")
 
-      And("the Organisation user selects 'Yes' in the '/have-trading-name' page ")
+      And("the Organisation user selects 'Yes' on the '/have-trading-name' page ")
       HaveTradingNamePage.select("Yes")
 
-      And("the Organization user enters trading name on '/trading-name' page")
+      And("the Organisation user enters trading name in the '/trading-name' page")
       TradingNamePage.enterTradingName("New World Ltd")
 
-      And("the Organisation user is redirected to '/utr' page")
-      UtrPage.onPage()
-
-      Thread.sleep(5000) // TODO: Remove once the utr page is built and we can navigate through the journey
-      And("the organisation user navigates to '/find-address' page")
-      FindAddressPage.navigateToFindAddressPage // TODO: Update the navigation once /utr page is built; currently it goes directly to /find-address page
+      And("the Organisation user enters the UTR in the '/utr' page")
+      UtrPage.enterUtr("1234567890")
 
       And("the organisation user enters the postcode and property number in the '/find-address' page")
       FindAddressPage.enterPostcodeAndProperty("ZZ01 1ZZ", "2")
@@ -156,6 +154,38 @@ class AddRcaspSpec extends BaseSpec {
 
       Then("the Individual user is taken to the '/check-answers' page")
       CheckAnswersPage.onPage()
+    }
+
+    Scenario(
+      "4 - Organisation user with CT-UTR enrolment, with a Crown Dependency postcode",
+      ManagementTests,
+      ZapTests
+    ) {
+      Given("the Organisation user logs in with a valid CARF ID and CT UTR")
+      AuthLoginPage.loginAsOrgAdminOutsideUkWithCtUtr("R1110")
+
+      And("the Organisation user clicks 'add a reporting cryptoasset service provider (RCASP)' link")
+      ServiceHomePage.clickOnLink(ServiceHomePage.addRcaspLink)
+
+      And("the Organisation user selects 'Yes' on the '/report-for-registered-business' page ")
+      ReportForRegisteredBusiness.select("Yes")
+
+      And("the Organisation user selects 'Yes' on the 'registered-business/is-this-your-business-name' page")
+      IsThisYourBusinessNamePage.select("Yes")
+
+      And("the Organisation user selects 'No' on the '/have-trading-name' page ")
+      HaveTradingNamePage.select("No")
+
+      And("the Organisation user selects 'Yes' on the '/is-the-address-correct' page")
+      IsTheAddressCorrectPage.select("yes")
+
+      And(
+        "the Organisation user is clicks on 'review and change the address to the right one' link on the '/problem/not-in-uk' page"
+      )
+      ProblemNotInUkPage.clickOnLink(ProblemNotInUkPage.reviewAndChangeLink)
+
+      And("the Organisation user is routed back to '/is-the-address-correct' page")
+      IsTheAddressCorrectPage.onPage()
     }
   }
 }
