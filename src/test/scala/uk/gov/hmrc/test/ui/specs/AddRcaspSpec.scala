@@ -18,6 +18,7 @@ package uk.gov.hmrc.test.ui.specs
 
 import uk.gov.hmrc.test.ui.pages.*
 import uk.gov.hmrc.test.ui.specs.tags.{ManagementTests, ZapTests}
+import uk.gov.hmrc.test.ui.utils.TestData
 
 class AddRcaspSpec extends BaseSpec {
 
@@ -77,16 +78,12 @@ class AddRcaspSpec extends BaseSpec {
       UtrPage.enterUtr("1234567890")
 
       And("the organisation user enters the postcode and property number in the '/find-address' page")
-      FindAddressPage.enterPostcodeAndProperty("ZZ01 1ZZ", "2")
+      FindAddressPage.enterPostcodeAndProperty(TestData.postcode, "2")
 
-      And("the Organisation user is redirected to '/review-address' page")
-      ReviewAddressPage.onPage()
-
-      // TODO: Continue journey as pages are built
-      Thread.sleep(5000) // TODO: Remove once the previous pages are ready and we can navigate through the journey
+      And("the Organisation user clicks on 'Confirm address' button in the '/review-address' page")
+      ReviewAddressPage.onPageSubmitById()
 
       And("the Organisation user enters team name in '/contact-name' page")
-      ContactNamePage.navigateToContactNamePage // TODO: Remove the method
       ContactNamePage.enterContactName("Carf Team")
 
       And("the Organisation user enters email in '/manage-your-rcasps/email' page")
@@ -140,14 +137,12 @@ class AddRcaspSpec extends BaseSpec {
       IndividualNiNumberPage.enterNiNumber("PB200807C")
 
       And("the Individual user enters the postcode on the '/find-address' page")
-      FindAddressPage.enterPostcodeAndProperty("ZZ01 1ZZ", "")
+      FindAddressPage.enterPostcodeAndProperty(TestData.postcode, "flat")
 
-      And("the Individual user is redirected to '/choose-address' page")
-      ChooseAddressPage.onPage()
-
-      Thread.sleep(5000) // TODO: Remove once the previous pages are ready and we can navigate through the journey
-      And("the Individual user navigates to '/individual-email' page")
-      IndividualEmailPage.navigateToIndEmailPage // TODO: Update the navigation once previous pages are built; currently it goes directly to /individual-email page
+      And(
+        "the Individual user selects the 2nd address from the list of addresses displayed on the '/choose-address' page"
+      )
+      ChooseAddressPage.selectRadioAndContinue(ChooseAddressPage.secondAddressRadioButtonId)
 
       And("the Individual user enters their email on the '/individual-email' page")
       IndividualEmailPage.enterIndEmail("john.doe@test.com")
