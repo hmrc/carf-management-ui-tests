@@ -6,7 +6,7 @@ object RcaspAddedPage extends BasePage {
 
   override val pageUrl: String = baseUrl + "/manage-your-rcasps/rcasp-added"
 
-  val backToManageYourRcaspLink: By             = By.cssSelector("a[href='/manage-your-rcasps/your-rcasps']")
-  val backToManageYourCryptoassetReportLink: By = By.cssSelector("p a[href='/manage-cryptoasset-reports']")
+  val backToManageYourRcaspLink: By             = By.id("manage-your-rcasps-link")
+  val backToManageYourCryptoassetReportLink: By = By.id("manage-your-cryptoassets-report-link")
 
 }
