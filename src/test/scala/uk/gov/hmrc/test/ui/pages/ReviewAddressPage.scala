@@ -18,6 +18,6 @@ package uk.gov.hmrc.test.ui.pages
 
 object ReviewAddressPage extends BasePage {
   override val pageUrl: String =
-    baseUrl + "/manage-your-rcasps/placeholder?message=Should+nav+to+%2Freview-address+%28CARF-201%29" // TODO: change url after implementation of CARF-201
+    baseUrl + "/manage-your-rcasps/review-address"
 
 }
