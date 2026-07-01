@@ -14,14 +14,24 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.utils
 
-import org.openqa.selenium.By
+object TestData {
 
-object ChooseAddressPage extends BasePage {
-  override val pageUrl: String =
-    baseUrl + "/manage-your-rcasps/choose-address"
+  private val env: String =
+    System.getProperty("environment", "local").toLowerCase
 
-  val secondAddressRadioButtonId = By.id("value-2")
+  def postcode: String = env match {
+    case "local"   => "ZZ01 1ZZ"
+    case "qa"      => "LU1 5JP"
+    case "staging" => "LU1 5JP"
+    case _         => throw new IllegalArgumentException(s"Unsupported environment: $env")
+  }
 
+  def propertyNumber: String = env match {
+    case "local"   => "3"
+    case "qa"      => "7"
+    case "staging" => "7"
+    case _         => throw new IllegalArgumentException(s"Unsupported environment: $env")
+  }
 }
