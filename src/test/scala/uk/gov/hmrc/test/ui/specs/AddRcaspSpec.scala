@@ -51,8 +51,14 @@ class AddRcaspSpec extends BaseSpec {
       And("the Organisation user selects 'Yes' on the '/is-the-address-correct' page")
       IsTheAddressCorrectPage.select("yes")
 
-      Then("the Organisation user is routed to '/registered-business/check-answers' page")
-      RegisteredBusinessCheckAnswersPage.onPage()
+      And("the Organisation user clicks submit button on '/check-answers' page")
+      RegisteredBusinessCheckAnswersPage.onPageSubmitById()
+
+      And("the Organisation user clicks Back to manage your cryptoasset report link")
+      RcaspAddedPage.clickOnLink(RcaspAddedPage.backToManageYourCryptoassetReportLink)
+
+      Then("the Organisation user is on '/manage-cryptoasset-reports' page")
+      ServiceHomePage.onPage()
     }
 
     Scenario("2 - Organisation user without CT-UTR enrolment, with RCASPs added", ManagementTests, ZapTests) {
@@ -153,7 +159,7 @@ class AddRcaspSpec extends BaseSpec {
       And("the Individual user enters their phone number on the '/individual-phone' page")
       IndividualPhonePage.enterIndPhone("01234567890")
 
-      And("the Individual user clicks submit button on '/check-your-answers' page")
+      And("the Individual user clicks submit button on '/check-answers' page")
       CheckAnswersPage.onPageSubmitById()
 
       And("the Individual user clicks Back to manage your RCASPs link")
@@ -168,6 +174,7 @@ class AddRcaspSpec extends BaseSpec {
       ManagementTests,
       ZapTests
     ) {
+
       Given("the Organisation user logs in with a valid CARF ID and CT UTR")
       AuthLoginPage.loginAsOrgAdminOutsideUkWithCtUtr("KK110")
 
