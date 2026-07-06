@@ -51,8 +51,14 @@ class AddRcaspSpec extends BaseSpec {
       And("the Organisation user selects 'Yes' on the '/is-the-address-correct' page")
       IsTheAddressCorrectPage.select("yes")
 
-      Then("the Organisation user is routed to '/registered-business/check-answers' page")
-      RegisteredBusinessCheckAnswersPage.onPage()
+      And("the Organisation user clicks submit button on '/check-answers' page")
+      RegisteredBusinessCheckAnswersPage.onPageSubmitById()
+
+      And("the Organisation user clicks Back to manage your cryptoasset report link on '/rcasp-added' page")
+      RcaspAddedPage.clickOnLink(RcaspAddedPage.backToManageYourCryptoassetReportLink)
+
+      Then("the Organisation user is on '/manage-cryptoasset-reports' page")
+      ServiceHomePage.onPage()
     }
 
     Scenario("2 - Organisation user without CT-UTR enrolment, with RCASPs added", ManagementTests, ZapTests) {
@@ -113,7 +119,7 @@ class AddRcaspSpec extends BaseSpec {
       And("the Organisation user clicks submit button on '/check-your-answers' page")
       CheckAnswersPage.onPageSubmitById()
 
-      And("the Organisation user clicks Back to manage your cryptoasset report link")
+      And("the Organisation user clicks Back to manage your cryptoasset report link on '/rcasp-added' page")
       RcaspAddedPage.clickOnLink(RcaspAddedPage.backToManageYourCryptoassetReportLink)
 
       Then("the Organisation user is on '/manage-cryptoasset-reports' page")
@@ -139,9 +145,7 @@ class AddRcaspSpec extends BaseSpec {
       And("the Individual user enters the postcode on the '/find-address' page")
       FindAddressPage.enterPostcodeAndProperty(TestData.postcode, "flat")
 
-      And(
-        "the Individual user selects the 2nd address from the list of addresses displayed on the '/choose-address' page"
-      )
+      And("the Individual user selects 2nd address from the list of addresses displayed on the '/choose-address' page")
       ChooseAddressPage.selectRadioAndContinue(ChooseAddressPage.secondAddressRadioButtonId)
 
       And("the Individual user enters their email on the '/individual-email' page")
@@ -153,21 +157,18 @@ class AddRcaspSpec extends BaseSpec {
       And("the Individual user enters their phone number on the '/individual-phone' page")
       IndividualPhonePage.enterIndPhone("01234567890")
 
-      And("the Individual user clicks submit button on '/check-your-answers' page")
+      And("the Individual user clicks submit button on '/check-answers' page")
       CheckAnswersPage.onPageSubmitById()
 
-      And("the Individual user clicks Back to manage your RCASPs link")
+      And("the Individual user clicks Back to manage your RCASPs link on '/rcasp-added' page")
       RcaspAddedPage.clickOnLink(RcaspAddedPage.backToManageYourRcaspLink)
 
       Then("the Individual user is on '/your-rcasps' page")
       YourRcaspsPage.onPage()
     }
 
-    Scenario(
-      "4 - Organisation user with CT-UTR enrolment, with a Crown Dependency postcode",
-      ManagementTests,
-      ZapTests
-    ) {
+    Scenario("4 - Organisation user with CT-UTR enrolment, with Crown Dependency postcode", ManagementTests, ZapTests) {
+
       Given("the Organisation user logs in with a valid CARF ID and CT UTR")
       AuthLoginPage.loginAsOrgAdminOutsideUkWithCtUtr("KK110")
 
