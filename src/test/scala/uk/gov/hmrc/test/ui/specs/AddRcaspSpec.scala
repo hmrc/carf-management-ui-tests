@@ -86,8 +86,11 @@ class AddRcaspSpec extends BaseSpec {
       And("the organisation user enters the postcode and property number in the '/find-address' page")
       FindAddressPage.enterPostcodeAndProperty(TestData.postcode, "2")
 
-      And("the Organisation user clicks on 'Confirm address' button in the '/review-address' page")
-      ReviewAddressPage.onPageSubmitById()
+      And("the Organisation user clicks on 'Edit address' link in the '/review-address' page")
+      ReviewAddressPage.clickOnLink(ReviewAddressPage.editAddressLink)
+
+      And("the organisation user manually enters the address in the '/address' page")
+      AddressPage.enterYourAddress("1, Test Street", "Test Town", TestData.postcode)
 
       And("the Organisation user enters team name in '/contact-name' page")
       ContactNamePage.enterContactName("Carf Team")
