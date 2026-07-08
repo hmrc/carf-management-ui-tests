@@ -31,7 +31,7 @@ class AddRcaspSpec extends BaseSpec {
 
     Scenario("1 - Organisation user with CT-UTR enrolment, without any RCASPs added", ManagementTests, ZapTests) {
       Given("the Organisation user logs in with a valid CARF ID and CT UTR")
-      AuthLoginPage.loginAsOrgAdminWithCtUtr("KK110")
+      AuthLoginPage.loginAsOrgAdminWithCtUtr("RK20")
 
       And("the Organisation user clicks 'add a reporting cryptoasset service provider (RCASP)' link")
       ServiceHomePage.clickOnLink(ServiceHomePage.addRcaspLink)
@@ -63,7 +63,7 @@ class AddRcaspSpec extends BaseSpec {
 
     Scenario("2 - Organisation user without CT-UTR enrolment, with RCASPs added", ManagementTests, ZapTests) {
       Given("the Organisation user logs in with a valid CARF ID")
-      AuthLoginPage.loginAsOrgAdminWithoutCtUtr("R1112")
+      AuthLoginPage.loginAsOrgAdminWithoutCtUtr("RN12")
 
       And("the Organisation user clicks 'add an RCASP' link")
       ServiceHomePage.clickOnLink(ServiceHomePage.addRcaspLink)
@@ -131,7 +131,7 @@ class AddRcaspSpec extends BaseSpec {
 
     Scenario("3 - Individual without any RCASPs added", ManagementTests, ZapTests) {
       Given("the Individual user logs in with a valid CARF ID")
-      AuthLoginPage.loginAsInd("8210")
+      AuthLoginPage.loginAsInd("LK20")
 
       And("the Individual user clicks 'add a reporting cryptoasset service provider (RCASP)' link")
       ServiceHomePage.clickOnLink(ServiceHomePage.addRcaspLink)
@@ -173,7 +173,7 @@ class AddRcaspSpec extends BaseSpec {
     Scenario("4 - Organisation user with CT-UTR enrolment, with Crown Dependency postcode", ManagementTests, ZapTests) {
 
       Given("the Organisation user logs in with a valid CARF ID and CT UTR")
-      AuthLoginPage.loginAsOrgAdminOutsideUkWithCtUtr("KK110")
+      AuthLoginPage.loginAsOrgAdminOutsideUkWithCtUtr("RK20")
 
       And("the Organisation user clicks 'add a reporting cryptoasset service provider (RCASP)' link")
       ServiceHomePage.clickOnLink(ServiceHomePage.addRcaspLink)
