@@ -16,17 +16,8 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.{By, WebElement}
-
-object YourRcaspsPage extends BasePage {
-
-  override val pageUrl: String = baseUrl + "/manage-your-rcasps/your-rcasps"
-
-  def changeLinkFor(businessName: String): WebElement =
-    driver.findElement(
-      By.xpath(
-        s"//div[@class='govuk-summary-list__row'][.//span[normalize-space()='$businessName']]//a[contains(@href,'/change/')]"
-      )
-    )
+object ChangeAnswersPage extends BasePage {
+  override val pageUrl: String =
+    baseUrl + "/manage-your-rcasps/change-answers/ZMCAR0123456788"
 
 }

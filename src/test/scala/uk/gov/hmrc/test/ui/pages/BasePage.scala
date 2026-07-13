@@ -17,7 +17,7 @@
 package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Select, Wait}
-import org.openqa.selenium.{By, WebDriver}
+import org.openqa.selenium.{By, WebDriver, WebElement}
 import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
@@ -52,6 +52,11 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
   def clickOnLink(link: By): Unit = {
     onPage()
     click(link)
+  }
+
+  def clickOnLink(link: WebElement): Unit = {
+    onPage()
+    link.click()
   }
 
   def selectDropdownById(id: By): Select = new Select(driver.findElement(id: By))
