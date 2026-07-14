@@ -26,20 +26,26 @@ class ManageYourRcaspsSpec extends BaseSpec {
     // 1. Organisation user without CT-UTR enrolment, with RCASPs added
     // 2. Individual with RCASPs added
 
-    Scenario("1 - Organisation user without CT-UTR enrolment, with RCASPs added", ManagementTests, ZapTests) {
+    Scenario(
+      "1 - Organisation user without CT-UTR enrolment, with RCASPs added - Navigating to add journey",
+      ManagementTests,
+      ZapTests
+    ) {
       Given("the Organisation user logs in with a valid CARF ID")
-      AuthLoginPage.loginAsOrgAdminWithoutCtUtr("NN1111")
+      AuthLoginPage.loginAsOrgAdminWithoutCtUtr("RN1111")
+
       And("the Organisation user clicks 'Manage your RCASPs' link")
       ServiceHomePage.clickOnLink(ServiceHomePage.manageYourRcaspsLink)
+
       And("the Organisation user selects 'Yes' on '/your-rcasps' page")
       YourRcaspsPage.select("Yes")
+
       And("the Organisation user selects 'Organisation' on '/organisation-or-individual' page")
       OrganisationOrIndividualPage.selectRcaspType("Organisation")
       // TODO: Check if need to Continue journey?
-
     }
 
-    Scenario("2 - Individual with RCASPs added", ManagementTests, ZapTests) {
+    Scenario("2 - Individual with RCASPs added - Navigating to add journey", ManagementTests, ZapTests) {
       Given("the Individual user logs in with a valid CARF ID")
       AuthLoginPage.loginAsInd("LL222")
 
@@ -58,6 +64,22 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Individual user selects 'Individual' on '/organisation-or-individual' page")
       OrganisationOrIndividualPage.selectRcaspType("Individual")
       // TODO: Check if need to Continue journey?
+    }
+
+    Scenario("3 - Non automatched org - change journey", ManagementTests, ZapTests) {
+      Given("the Organisation user logs in with a valid CARF ID")
+      AuthLoginPage.loginAsOrgAdminWithoutCtUtr("RN1111")
+
+      And("the Organisation user clicks 'Manage your RCASPs' link on the '/manage-cryptoasset-reports' page")
+      ServiceHomePage.clickOnLink(ServiceHomePage.manageYourRcaspsLink)
+
+      And(
+        "the Organisation user clicks on 'Change' link on the '/manage-your-rcasps/your-rcasps' page"
+      )
+      YourRcaspsPage.clickOnLink(YourRcaspsPage.changeLinkFor("Amazon UK"))
+
+      Then("the Organisation user is routed to '/manage-your-rcasps/change-answers/:CARFID' page")
+      ChangeAnswersPage.onPage()
     }
   }
 }
