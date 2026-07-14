@@ -74,7 +74,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
       ServiceHomePage.clickOnLink(ServiceHomePage.manageYourRcaspsLink)
 
       And(
-        "the Organisation user clicks on 'Change' link for 'Amazon UK' on the '/manage-your-rcasps/your-rcasps' page"
+        "the Organisation user clicks on 'Change' link on the '/manage-your-rcasps/your-rcasps' page"
       )
       YourRcaspsPage.clickOnLink(YourRcaspsPage.changeLinkFor("Amazon UK"))
 
