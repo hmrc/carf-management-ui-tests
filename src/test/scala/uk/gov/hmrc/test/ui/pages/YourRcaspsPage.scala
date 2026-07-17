@@ -29,4 +29,11 @@ object YourRcaspsPage extends BasePage {
       )
     )
 
+  def RemoveLinkFor(businessName: String): WebElement =
+    driver.findElement(
+      By.xpath(
+        s"""//div[@class='govuk-summary-list__row'][.//span[normalize-space()="$businessName"]]//a[contains(@href,'/remove/')]"""
+      )
+    )
+
 }

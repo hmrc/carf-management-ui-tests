@@ -66,7 +66,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
       // TODO: Check if need to Continue journey?
     }
 
-    Scenario("3 - Non automatched org - change journey", ManagementTests, ZapTests) {
+    Scenario("3 - Non automatched org - Change journey", ManagementTests, ZapTests) {
       Given("the Organisation user logs in with a valid CARF ID")
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr("RN1111")
 
@@ -80,6 +80,32 @@ class ManageYourRcaspsSpec extends BaseSpec {
 
       Then("the Organisation user is routed to '/manage-your-rcasps/change-answers/:CARFID' page")
       ChangeAnswersPage.onPage()
+    }
+
+    Scenario("4 - Automatched org - RCASP is user - Change journey", ManagementTests, ZapTests) {
+      // TODO: Add the steps once /registered-business/change-answers is implemented
+    }
+
+    Scenario("5 - Non automatched org - Remove journey", ManagementTests, ZapTests) {
+      Given("the Organisation user logs in with a valid CARF ID")
+      AuthLoginPage.loginAsOrgAdminWithoutCtUtr("RG11")
+
+      And("the Organisation user clicks 'Manage your RCASPs' link on the '/manage-cryptoasset-reports' page")
+      ServiceHomePage.clickOnLink(ServiceHomePage.manageYourRcaspsLink)
+
+      And(
+        "the Organisation user clicks on 'Remove' link on the '/manage-your-rcasps/your-rcasps' page"
+      )
+      YourRcaspsPage.clickOnLink(YourRcaspsPage.RemoveLinkFor("Amazon UK"))
+
+      And("the Organisation user selects 'No' on the '/manage-your-rcasps/remove/user-access/:CARFID' page")
+      RemoveUserAccessPage.select("No")
+
+      And("the Organisation user selects 'No' on the '/manage-your-rcasps/remove/other-access/:CARFID' page")
+      RemoveOtherAccessPage.select("No")
+
+      Then("the Organisation user is routed to '/manage-your-rcasps/remove/remove-rcasp' page")
+      RemoveRcaspPage.onPage()
     }
   }
 }
