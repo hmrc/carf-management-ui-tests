@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2026 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,11 +18,14 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
 
-object ServiceHomePage extends BasePage {
-  override val pageUrl: String = baseUrl + "/manage-cryptoasset-reports"
+object FindAddressChangeModePage extends BasePage {
 
-  val changeContactDetailsChangeLink: By = By.cssSelector("a[href*='/change-contact']")
-  val addRcaspLink: By                   = By.cssSelector("a[href='/manage-your-rcasps']")
-  val manageYourRcaspsLink: By           = By.cssSelector("a[href='/manage-your-rcasps/your-rcasps']")
+  override val pageUrl: String =
+    baseUrl + "/manage-your-rcasps/change-find-address"
 
+  private val postcodeId     = By.id("postcode")
+  private val propertyNameId = By.id("propertyNameOrNumber")
+
+  def enterPostcodeAndProperty(postcodeValue: String, propertyNameValue: String): Unit =
+    fillFieldsAndContinue((postcodeId, postcodeValue), (propertyNameId, propertyNameValue))
 }

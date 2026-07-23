@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2026 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,11 +18,10 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
 
-object ServiceHomePage extends BasePage {
-  override val pageUrl: String = baseUrl + "/manage-cryptoasset-reports"
+object RegisteredBusinessChangeAnswersPage extends BasePage {
+  override val pageUrl: String = baseUrl + "/manage-your-rcasps/registered-business/change-answers/ZMCAR0123456787"
 
-  val changeContactDetailsChangeLink: By = By.cssSelector("a[href*='/change-contact']")
-  val addRcaspLink: By                   = By.cssSelector("a[href='/manage-your-rcasps']")
-  val manageYourRcaspsLink: By           = By.cssSelector("a[href='/manage-your-rcasps/your-rcasps']")
+  val changeOrganisationNameLink: By    = By.cssSelector("a[href*='change-is-this-your-business-name']")
+  val changeMainBusinessAddressLink: By = By.cssSelector("a[href*='change-is-the-address-correct']")
 
 }
