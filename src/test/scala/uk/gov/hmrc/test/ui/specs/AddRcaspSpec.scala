@@ -84,7 +84,7 @@ class AddRcaspSpec extends BaseSpec {
       UtrPage.enterUtr("1234567890")
 
       And("the organisation user enters the postcode and property number in the '/find-address' page")
-      FindAddressPage.enterPostcodeAndProperty(TestData.postcode, "2")
+      FindAddressPage.enterPostcodeAndProperty(TestData.postcode, TestData.propertyNumber)
 
       And("the Organisation user clicks on 'Edit address' link in the '/review-address' page")
       ReviewAddressPage.clickOnLink(ReviewAddressPage.editAddressLink)
