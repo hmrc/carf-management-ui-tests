@@ -35,11 +35,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
     // **************************************************
     // 1. Organisation user without CT-UTR enrolment, with RCASPs added - Navigating to add journey
     // **************************************************
-    Scenario(
-      "1 - Organisation user without CT-UTR enrolment, with RCASPs added - Navigating to add journey",
-      ManagementTests,
-      ZapTests
-    ) {
+    Scenario("1 - Organisation user without CT-UTR enrolment, with RCASPs added - Navigating to add journey", ManagementTests, ZapTests) {
       Given("the Organisation user logs in with a valid CARF ID")
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr("RN1111")
 
@@ -81,51 +77,35 @@ class ManageYourRcaspsSpec extends BaseSpec {
     // **************************************************
     // 3. Organisation user with CT-UTR enrolment - RCASP is user - Change journey
     // **************************************************
-    Scenario(
-      "3 - Organisation user with CT-UTR enrolment - RCASP is user - Change journey",
-      ManagementTests,
-      ZapTests
-    ) {
+    Scenario("3 - Organisation user with CT-UTR enrolment - RCASP is user - Change journey", ManagementTests, ZapTests) {
       Given("the Organisation user logs in with a valid CARF ID")
       AuthLoginPage.loginAsOrgAdminWithCtUtr("RA11")
 
       And("the Organisation user clicks 'Manage your RCASPs' link on the '/manage-cryptoasset-reports' page")
       ServiceHomePage.clickOnLink(ServiceHomePage.manageYourRcaspsLink)
 
-      And(
-        "the Organisation user clicks on 'Change' link on the '/manage-your-rcasps/your-rcasps' page"
-      )
+      And("the Organisation user clicks on 'Change' link on the '/your-rcasps' page")
       YourRcaspsPage.clickOnLink(YourRcaspsPage.changeLinkFor("Timmy's Turtles"))
 
-      And(
-        "the Organisation user clicks on 'Change organisation name' link in the '/registered-business/change-answers/:CARFID' page"
-      )
+      And("the Organisation user clicks on 'Change organisation name' link in the '/registered-business/change-answers/:CARFID' page")
       RegisteredBusinessChangeAnswersPage.clickOnLink(RegisteredBusinessChangeAnswersPage.changeOrganisationNameLink)
 
       And("the Organisation user selects 'Yes' on the 'registered-business/change-is-this-your-business-name' page")
       IsThisYourBusinessNameChangeModePage.select("Yes")
 
-      And(
-        "the Organisation user clicks on 'Change main business address' link in the '/registered-business/change-answers/:CARFID' page"
-      )
+      And("the Organisation user clicks on 'Change main business address' link in the '/registered-business/change-answers/:CARFID' page")
       RegisteredBusinessChangeAnswersPage.clickOnLink(RegisteredBusinessChangeAnswersPage.changeMainBusinessAddressLink)
 
       And("the Organisation user clicks on 'No' in the '/registered-business/change-is-the-address-correct' page")
       IsTheAddressCorrectChangeModePage.select("No")
 
-      And(
-        "the organisation user enters the postcode and property number in the '/manage-your-rcasps/change-find-address' page"
-      )
+      And("the organisation user enters the postcode and property number in the '/change-find-address' page")
       FindAddressChangeModePage.enterPostcodeAndProperty(TestData.postcode, TestData.propertyNumber)
 
-      And(
-        "the Organisation user clicks on 'Confirm address' button in the '/manage-your-rcasps/change-review-address' page"
-      )
+      And("the Organisation user clicks on 'Confirm address' button in the '/change-review-address' page")
       ReviewAddressChangeModePage.onPageSubmitById()
 
-      And(
-        "the Organisation user clicks on 'Confirm and send' button in the '/registered-business/change-answers/:CARFID' page"
-      )
+      And("the Organisation user clicks on 'Confirm and send' button in the '/registered-business/change-answers/:CARFID' page")
       RegisteredBusinessChangeAnswersPage.onPageSubmitById()
 
       Then("the Organisation user is routed to '/details-updated' page")
@@ -135,23 +115,17 @@ class ManageYourRcaspsSpec extends BaseSpec {
     // **************************************************
     // 4. Organisation user without CT-UTR enrolment - RCASP is not user - Change journey
     // **************************************************
-    Scenario(
-      "4 - Organisation user without CT-UTR enrolment - RCASP is not user - Change journey",
-      ManagementTests,
-      ZapTests
-    ) {
+    Scenario("4 - Organisation user without CT-UTR enrolment - RCASP is not user - Change journey", ManagementTests, ZapTests) {
       Given("the Organisation user logs in with a valid CARF ID")
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr("RN1111")
 
       And("the Organisation user clicks 'Manage your RCASPs' link on the '/manage-cryptoasset-reports' page")
       ServiceHomePage.clickOnLink(ServiceHomePage.manageYourRcaspsLink)
 
-      And(
-        "the Organisation user clicks on 'Change' link on the '/manage-your-rcasps/your-rcasps' page"
-      )
+      And("the Organisation user clicks on 'Change' link on the '/your-rcasps' page")
       YourRcaspsPage.clickOnLink(YourRcaspsPage.changeLinkFor("Amazon UK"))
 
-      Then("the Organisation user is routed to '/manage-your-rcasps/change-answers/:CARFID' page")
+      Then("the Organisation user is routed to '/change-answers/:CARFID' page")
       ChangeAnswersPage.onPage()
 
       // TODO: Continue journey till /details-updated page
@@ -160,11 +134,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
     // **************************************************
     // 5. Organisation user without CT-UTR enrolment - RCASP is not user - Second contact details change journey
     // **************************************************
-    Scenario(
-      "5 - Organisation user without CT-UTR enrolment - RCASP is not user - Second contact details change journey",
-      ManagementTests,
-      ZapTests
-    ) {
+    Scenario("5 - Organisation user without CT-UTR enrolment - RCASP is not user - Second contact details change journey", ManagementTests, ZapTests) {
       // TODO: To be added as part of CARF-354
     }
 
@@ -185,20 +155,26 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks 'Manage your RCASPs' link on the '/manage-cryptoasset-reports' page")
       ServiceHomePage.clickOnLink(ServiceHomePage.manageYourRcaspsLink)
 
-      And(
-        "the Organisation user clicks on 'Remove' link on the '/manage-your-rcasps/your-rcasps' page"
-      )
+      And("the Organisation user clicks on 'Remove' link on the '/your-rcasps' page")
       YourRcaspsPage.clickOnLink(YourRcaspsPage.RemoveLinkFor("Amazon UK"))
 
-      And("the Organisation user selects 'No' on the '/manage-your-rcasps/remove/user-access/:CARFID' page")
+      And("the Organisation user selects 'No' on the '/user-access/:CARFID' page")
       RemoveUserAccessPage.select("No")
 
-      And("the Organisation user selects 'No' on the '/manage-your-rcasps/remove/other-access/:CARFID' page")
+      And("the Organisation user selects 'No' on the 'other-access/:CARFID' page")
       RemoveOtherAccessPage.select("No")
 
-      Then("the Organisation user is routed to '/manage-your-rcasps/remove/remove-rcasp' page")
-      RemoveRcaspPage.onPage()
-      // TODO: Continue journey as part of CAFRF-549
+      And("the Organisation user selects 'Yes' on the '/remove-rcasp' page")
+      RemoveRcaspPage.select("Yes")
+
+      And("the Organisation user clicks Back to manage your RCASPs link on '/rcasp-removed' page ")
+      RcaspRemovedPage.clickOnLink(RcaspRemovedPage.backToManageYourRcaspLink)
+
+      And("the Organisation user clicks on 'Remove' link on the '/your-rcasps' page")
+      YourRcaspsPage.clickOnLink(YourRcaspsPage.RemoveLinkFor("Amazon UK"))
+
+      Then("the Organisation user is on '/problem/page-unavailable' page")
+      PageUnavailablePage.onPage()
     }
   }
 }

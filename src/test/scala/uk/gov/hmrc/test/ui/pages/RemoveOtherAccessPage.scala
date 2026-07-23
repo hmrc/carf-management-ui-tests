@@ -18,6 +18,7 @@ package uk.gov.hmrc.test.ui.pages
 
 object RemoveOtherAccessPage extends BasePage {
   override val pageUrl: String =
-    baseUrl + "/manage-your-rcasps/remove/other-access/ZMCAR0123456788"
+//    baseUrl + "/manage-your-rcasps/remove/other-access/ZMCAR0123456788" //TODO: confirm if url needs carf id?
+    baseUrl + "/manage-your-rcasps/remove/other-access"
 
 }
