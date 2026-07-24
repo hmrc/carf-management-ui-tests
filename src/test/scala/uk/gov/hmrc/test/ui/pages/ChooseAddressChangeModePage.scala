@@ -18,11 +18,23 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
 
-object RcaspRemovedPage extends BasePage {
-
+object ChooseAddressChangeModePage extends BasePage {
   override val pageUrl: String =
-    baseUrl + "/manage-your-rcasps/remove/rcasp-removed"
+    baseUrl + "/manage-your-rcasps/change-choose-address"
 
-  val backToManageYourRcaspLink: By             = By.id("manage-your-rcasps-link")
-  val backToManageYourCryptoassetReportLink: By = By.id("manage-your-cryptoassets-report-link")
+  val secondAddressRadioButtonId = By.id("value-2")
+  val noneOfTheseRadioButtonId   = By.id("value-none")
+
+  def selectAddressAs(addressButton: String): Unit = {
+    val radioId = addressButton.trim.toLowerCase match {
+      case "second address" => secondAddressRadioButtonId
+      case "none of these"  => noneOfTheseRadioButtonId
+      case other            =>
+        throw new IllegalArgumentException(
+          s"Invalid address option: '$addressButton'. Use 'Second Address' or 'None of these'."
+        )
+    }
+    selectRadioAndContinue(radioId)
+  }
+
 }

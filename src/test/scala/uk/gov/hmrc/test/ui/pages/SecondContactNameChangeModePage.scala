@@ -16,8 +16,13 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object PageUnavailablePage extends BasePage {
+import org.openqa.selenium.By
 
-  override val pageUrl: String =
-    baseUrl + "/manage-your-rcasps/placeholder?message=Should+nav+to+%2Fproblem%2Fpage-unavailable+%28CARF-308%29"
+object SecondContactNameChangeModePage extends BasePage {
+  override val pageUrl: String = baseUrl + "/manage-your-rcasps/change-second-contact-name"
+
+  private val secondContactNameInput = By.id("value")
+
+  def enterSecondContactName(secondContactNameValue: String): Unit =
+    fillFieldsAndContinue((secondContactNameInput, secondContactNameValue))
 }

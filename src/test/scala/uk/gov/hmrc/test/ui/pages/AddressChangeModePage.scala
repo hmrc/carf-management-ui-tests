@@ -16,8 +16,16 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object PageUnavailablePage extends BasePage {
+import org.openqa.selenium.By
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-  override val pageUrl: String =
-    baseUrl + "/manage-your-rcasps/placeholder?message=Should+nav+to+%2Fproblem%2Fpage-unavailable+%28CARF-308%29"
+object AddressChangeModePage extends BasePage {
+  override val pageUrl: String = baseUrl + "/manage-your-rcasps/change-address"
+
+  private val addressLine1ID = By.id("addressLine1")
+  private val townOrCityID   = By.id("townOrCity")
+  private val postcodeID     = By.id("postcode")
+
+  def enterYourAddress(addressLine1: String, townOrCity: String, postcode: String): Unit =
+    fillFieldsAndContinue((addressLine1ID, addressLine1), (townOrCityID, townOrCity), (postcodeID, postcode))
 }

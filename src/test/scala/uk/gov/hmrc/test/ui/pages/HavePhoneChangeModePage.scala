@@ -16,8 +16,8 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object PageUnavailablePage extends BasePage {
+object HavePhoneChangeModePage extends BasePage {
 
-  override val pageUrl: String =
-    baseUrl + "/manage-your-rcasps/placeholder?message=Should+nav+to+%2Fproblem%2Fpage-unavailable+%28CARF-308%29"
+  override val pageUrl: String = baseUrl + "/manage-your-rcasps/change-have-phone"
+
 }

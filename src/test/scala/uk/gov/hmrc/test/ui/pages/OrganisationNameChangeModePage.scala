@@ -16,9 +16,13 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object DetailsUpdatedPage extends BasePage {
+import org.openqa.selenium.By
 
-  override val pageUrl: String =
-    baseUrl + "/manage-your-rcasps/placeholder?message=Successful+submission+for+ZMCAR0123456787.+Should+redirect+to+%2Fdetails-updated+%28CARF-353%29"
+object OrganisationNameChangeModePage extends BasePage {
+  override val pageUrl: String = baseUrl + "/manage-your-rcasps/change-organisation-name"
 
+  private val orgNameInput = By.id("value")
+
+  def enterOrgName(orgNameValue: String): Unit =
+    fillFieldsAndContinue((orgNameInput, orgNameValue))
 }

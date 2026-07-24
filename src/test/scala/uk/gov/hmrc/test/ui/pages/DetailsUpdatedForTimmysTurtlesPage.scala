@@ -16,8 +16,9 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object PageUnavailablePage extends BasePage {
+object DetailsUpdatedForTimmysTurtlesPage extends BasePage {
 
   override val pageUrl: String =
-    baseUrl + "/manage-your-rcasps/placeholder?message=Should+nav+to+%2Fproblem%2Fpage-unavailable+%28CARF-308%29"
+    baseUrl + "/manage-your-rcasps/placeholder?message=Successful+submission+for+ZMCAR0123456787.+Should+redirect+to+%2Fdetails-updated+%28CARF-353%29"
+
 }

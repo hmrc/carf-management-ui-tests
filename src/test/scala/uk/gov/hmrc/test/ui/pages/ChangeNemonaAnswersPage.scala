@@ -16,8 +16,13 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object PageUnavailablePage extends BasePage {
+import org.openqa.selenium.By
 
-  override val pageUrl: String =
-    baseUrl + "/manage-your-rcasps/placeholder?message=Should+nav+to+%2Fproblem%2Fpage-unavailable+%28CARF-308%29"
+object ChangeNemonaAnswersPage extends BasePage {
+  override val pageUrl: String = baseUrl + "/manage-your-rcasps/change-answers/ZMCAR0123456782"
+
+  val changeNameLink: By      = By.cssSelector("a[href*='change-individual-name']")
+  val changeEmailLink: By     = By.cssSelector("a[href*='change-individual-email']")
+  val changeHavePhoneLink: By = By.cssSelector("a[href*='change-individual-have-phone']")
+
 }
