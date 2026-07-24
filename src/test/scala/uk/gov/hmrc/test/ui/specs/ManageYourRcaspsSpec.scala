@@ -108,7 +108,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks on 'Confirm and send' button in the '/registered-business/change-answers/:CARFID' page")
       RegisteredBusinessChangeAnswersPage.onPageSubmitById()
 
-      //TODO: Delete the different details-updated pages and create a common details-updated page after CARF-353 is merged
+      // TODO: Delete the different details-updated pages and create a common details-updated page after CARF-353 is merged
       Then("the Organisation user is routed to '/details-updated' page")
       DetailsUpdatedForTimmysTurtlesPage.onPage()
     }
@@ -185,11 +185,11 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user enters the second contact phone in the '/manage-your-rcasps/second-contact-phone' page")
       SecondContactPhonePage.enterPhoneNumber("1234567890")
 
-      //TODO: Change this to 'Confirm and send' button on '/change-answers' page once it has been implemented in CARF-559
+      // TODO: Change this to 'Confirm and send' button on '/change-answers' page once it has been implemented in CARF-559
       And("the Organisation user clicks on 'Confirm and add' button on '/manage-your-rcasps/check-answers' page")
       CheckAnswersPage.onPageSubmitById()
 
-      //TODO: Change this to '/details-updated' page once it has been implemented in CARF-559
+      // TODO: Change this to '/details-updated' page once it has been implemented in CARF-559
       Then("the Organisation user is routed to '/manage-your-rcasps/rcasp-added' page")
       RcaspAddedPage.onPage()
     }
@@ -228,7 +228,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks on 'Confirm and send' button on '/manage-your-rcasps/change-answers/:CARFID' page")
       ChangeAppleAnswersPage.onPageSubmitById()
 
-      //TODO: Delete the different details-updated pages and create a common details-updated page after CARF-353 is merged
+      // TODO: Delete the different details-updated pages and create a common details-updated page after CARF-353 is merged
       Then("the Organisation user is routed to '/details-updated' page")
       DetailsUpdatedForApplePage.onPage()
     }
@@ -270,7 +270,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks on 'Confirm and send' button on '/manage-your-rcasps/change-answers/:CARFID' page")
       ChangeNemonaAnswersPage.onPageSubmitById()
 
-      //TODO: Delete the different details-updated pages and create a common details-updated page after CARF-353 is merged
+      // TODO: Delete the different details-updated pages and create a common details-updated page after CARF-353 is merged
       Then("the Organisation user is routed to '/details-updated' page")
       DetailsUpdatedForNemonaPage.onPage()
     }

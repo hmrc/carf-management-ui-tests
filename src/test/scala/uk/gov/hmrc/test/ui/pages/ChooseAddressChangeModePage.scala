@@ -23,13 +23,13 @@ object ChooseAddressChangeModePage extends BasePage {
     baseUrl + "/manage-your-rcasps/change-choose-address"
 
   val secondAddressRadioButtonId = By.id("value-2")
-  val noneOfTheseRadioButtonId = By.id("value-none")
+  val noneOfTheseRadioButtonId   = By.id("value-none")
 
   def selectAddressAs(addressButton: String): Unit = {
     val radioId = addressButton.trim.toLowerCase match {
       case "second address" => secondAddressRadioButtonId
-      case "none of these" => noneOfTheseRadioButtonId
-      case other =>
+      case "none of these"  => noneOfTheseRadioButtonId
+      case other            =>
         throw new IllegalArgumentException(
           s"Invalid address option: '$addressButton'. Use 'Second Address' or 'None of these'."
         )

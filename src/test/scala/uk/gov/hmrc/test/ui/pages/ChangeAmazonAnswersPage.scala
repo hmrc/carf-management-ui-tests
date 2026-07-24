@@ -21,11 +21,11 @@ import org.openqa.selenium.By
 object ChangeAmazonAnswersPage extends BasePage {
   override val pageUrl: String = baseUrl + "/manage-your-rcasps/change-answers/ZMCAR0123456788"
 
-    val changeOrganisationNameLink: By = By.cssSelector("a[href*='change-organisation-name']")
-    val changeMainBusinessAddressLink: By = By.cssSelector("a[href*='change-find-address']")
-    val changeContactNameLink: By = By.cssSelector("a[href*='change-contact-name']")
-    val changeEmailLink: By = By.cssSelector("a[href*='change-email']")
-    val changeHavePhoneLink: By = By.cssSelector("a[href*='change-have-phone']")
-    val changeHaveSecondContactLink: By = By.cssSelector("a[href*='change-have-second-contact']")
+  val changeOrganisationNameLink: By    = By.cssSelector("a[href*='change-organisation-name']")
+  val changeMainBusinessAddressLink: By = By.cssSelector("a[href*='change-find-address']")
+  val changeContactNameLink: By         = By.cssSelector("a[href*='change-contact-name']")
+  val changeEmailLink: By               = By.cssSelector("a[href*='change-email']")
+  val changeHavePhoneLink: By           = By.cssSelector("a[href*='change-have-phone']")
+  val changeHaveSecondContactLink: By   = By.cssSelector("a[href*='change-have-second-contact']")
 
 }
