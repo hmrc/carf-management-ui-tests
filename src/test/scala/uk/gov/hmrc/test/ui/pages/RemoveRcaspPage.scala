@@ -18,6 +18,6 @@ package uk.gov.hmrc.test.ui.pages
 
 object RemoveRcaspPage extends BasePage {
   override val pageUrl: String =
-    baseUrl + "/manage-your-rcasps/placeholder?message=Should+nav+to+%2Fremove%2Fremove-rcasp+%28CARF-549%29"
+    baseUrl + "/manage-your-rcasps/remove/remove-rcasp"
 
 }
