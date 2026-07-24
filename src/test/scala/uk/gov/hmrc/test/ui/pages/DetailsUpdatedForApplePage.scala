@@ -16,9 +16,9 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object DetailsUpdatedPage extends BasePage {
+object DetailsUpdatedForApplePage extends BasePage {
 
   override val pageUrl: String =
-    baseUrl + "/manage-your-rcasps/placeholder?message=Successful+submission+for+ZMCAR0123456787.+Should+redirect+to+%2Fdetails-updated+%28CARF-353%29"
+    baseUrl + "/manage-your-rcasps/placeholder?message=Successful+submission+for+ZMCAR0123456786.+Should+redirect+to+%2Fdetails-updated+%28CARF-353%29"
 
 }

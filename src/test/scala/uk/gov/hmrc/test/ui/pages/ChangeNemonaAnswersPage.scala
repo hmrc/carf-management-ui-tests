@@ -18,12 +18,12 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
 
-object IndividualNamePage extends BasePage {
-  override val pageUrl: String = baseUrl + "/manage-your-rcasps/individual-name"
+object ChangeNemonaAnswersPage extends BasePage {
+  override val pageUrl: String = baseUrl + "/manage-your-rcasps/change-answers/ZMCAR0123456782"
 
-  private val indFirstNameID = By.id("firstName")
-  private val indLastNameID  = By.id("lastName")
+    val changeNameLink: By = By.cssSelector("a[href*='change-individual-name']")
+    val changeEmailLink: By = By.cssSelector("a[href*='change-individual-email']")
+    val changeHavePhoneLink: By = By.cssSelector("a[href*='change-individual-have-phone']")
 
-  def enterIndName(firstNameValue: String, lastNameValue: String): Unit =
-    fillFieldsAndContinue((indFirstNameID, firstNameValue), (indLastNameID, lastNameValue))
+
 }

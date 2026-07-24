@@ -108,8 +108,9 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks on 'Confirm and send' button in the '/registered-business/change-answers/:CARFID' page")
       RegisteredBusinessChangeAnswersPage.onPageSubmitById()
 
+      //TODO: Delete the different details-updated pages and create a common details-updated page after CARF-353 is merged
       Then("the Organisation user is routed to '/details-updated' page")
-      DetailsUpdatedPage.onPage()
+      DetailsUpdatedForTimmysTurtlesPage.onPage()
     }
 
     // **************************************************
@@ -126,13 +127,13 @@ class ManageYourRcaspsSpec extends BaseSpec {
       YourRcaspsPage.clickOnLink(YourRcaspsPage.changeLinkFor("Amazon UK"))
 
       And("the Organisation user clicks on 'Change organisation name' link on '/manage-your-rcasps/change-answers/:CARFID' page")
-      ChangeAnswersPage.clickOnLink(ChangeAnswersPage.changeOrganisationNameLink)
+      ChangeAmazonAnswersPage.clickOnLink(ChangeAmazonAnswersPage.changeOrganisationNameLink)
 
       And("the Organisation user changes the name in '/manage-your-rcasps/change-organisation-name' page")
       OrganisationNameChangeModePage.enterOrgName("New Org Ltd")
 
       And("the Organisation user clicks on 'Change main business address' link on '/manage-your-rcasps/change-answers/:CARFID' page")
-      ChangeAnswersPage.clickOnLink(ChangeAnswersPage.changeMainBusinessAddressLink)
+      ChangeAmazonAnswersPage.clickOnLink(ChangeAmazonAnswersPage.changeMainBusinessAddressLink)
 
       And(
         "the Organisation user enters the postcode and property number on the '/manage-your-rcasps/change-find-address' page"
@@ -146,19 +147,19 @@ class ManageYourRcaspsSpec extends BaseSpec {
       AddressChangeModePage.enterYourAddress("1 Updated Test Street", "Updated Test Town", "AB1 2CD")
 
       And("the Organisation user clicks on 'Change first contact name' link on '/manage-your-rcasps/change-answers/:CARFID' page")
-      ChangeAnswersPage.clickOnLink(ChangeAnswersPage.changeContactNameLink)
+      ChangeAmazonAnswersPage.clickOnLink(ChangeAmazonAnswersPage.changeContactNameLink)
 
       And("the Organisation user updates the first contact name in the '/manage-your-rcasps/change-contact-name' page ")
       ContactNameChangeModePage.enterContactName("Updated First Contact")
 
       And("the Organisation user clicks on 'Change first contact email address' link on '/manage-your-rcasps/change-answers/:CARFID' page")
-      ChangeAnswersPage.clickOnLink(ChangeAnswersPage.changeEmailLink)
+      ChangeAmazonAnswersPage.clickOnLink(ChangeAmazonAnswersPage.changeEmailLink)
 
       And("the Organisation user updates the first contact email in the '/manage-your-rcasps/change-email' page ")
       EmailChangeModePage.enterEmail("UpdatedFirstContact@test.com")
 
       And("the Organisation user clicks on 'Change if we can contact the first contact by phone' link on '/manage-your-rcasps/change-answers/:CARFID' page")
-      ChangeAnswersPage.clickOnLink(ChangeAnswersPage.changeHavePhoneLink)
+      ChangeAmazonAnswersPage.clickOnLink(ChangeAmazonAnswersPage.changeHavePhoneLink)
 
       And("the Organisation user updates the first contact phone preference in the '/manage-your-rcasps/change-have-phone' page ")
       HavePhoneChangeModePage.select("yes")
@@ -167,7 +168,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
       PhoneChangeModePage.enterPhone("1234567890")
 
       And("the Organisation user clicks on 'Change if the organisation has a second contact' link on '/manage-your-rcasps/change-answers/:CARFID' page")
-      ChangeAnswersPage.clickOnLink(ChangeAnswersPage.changeHaveSecondContactLink)
+      ChangeAmazonAnswersPage.clickOnLink(ChangeAmazonAnswersPage.changeHaveSecondContactLink)
 
       And("the Organisation user updates the second contact preference in the '/manage-your-rcasps/change-have-second-contact' page ")
       HaveSecondContactChangeModePage.select("yes")
@@ -197,14 +198,81 @@ class ManageYourRcaspsSpec extends BaseSpec {
     // 5. Organisation user without CT-UTR enrolment - RCASP is not user - Second contact details change journey
     // **************************************************
     Scenario("5 - Organisation user without CT-UTR enrolment - RCASP is not user - Second contact details change journey", ManagementTests, ZapTests) {
-      // TODO: To be added as part of CARF-354
+      Given("the Organisation user logs in with a valid CARF ID")
+      AuthLoginPage.loginAsOrgAdminWithoutCtUtr("RN1111")
+
+      And("the Organisation user clicks 'Manage your RCASPs' link on the '/manage-cryptoasset-reports' page")
+      ServiceHomePage.clickOnLink(ServiceHomePage.manageYourRcaspsLink)
+
+      And("the Organisation user clicks on 'Change' link on the '/your-rcasps' page")
+      YourRcaspsPage.clickOnLink(YourRcaspsPage.changeLinkFor("Apple"))
+
+      And("the Organisation user clicks on 'Change second contact name' link on '/manage-your-rcasps/change-answers/:CARFID' page")
+      ChangeAppleAnswersPage.clickOnLink(ChangeAppleAnswersPage.changeSecondContactNameLink)
+
+      And("the Organisation user updates the second contact name in the '/manage-your-rcasps/change-second-contact-name' page ")
+      SecondContactNameChangeModePage.enterSecondContactName("Second Tester")
+
+      And("the Organisation user clicks on 'Change second contact email address' link on '/manage-your-rcasps/change-answers/:CARFID' page")
+      ChangeAppleAnswersPage.clickOnLink(ChangeAppleAnswersPage.changeSecondContactEmailLink)
+
+      And("the Organisation user updates the second contact email in the '/manage-your-rcasps/change-second-contact-email' page ")
+      SecondContactEmailChangeModePage.enterEmailAddress("second.tester@test.com")
+
+      And("the Organisation user clicks on ' Change if we can contact the second contact by phone' link on '/manage-your-rcasps/change-answers/:CARFID' page")
+      ChangeAppleAnswersPage.clickOnLink(ChangeAppleAnswersPage.changeSecondContactHavePhoneLink)
+
+      And("the Organisation user selects 'No' in the '/manage-your-rcasps/change-second-contact-have-phone' page ")
+      SecondContactHavePhoneChangeModePage.select("No")
+
+      And("the Organisation user clicks on 'Confirm and send' button on '/manage-your-rcasps/change-answers/:CARFID' page")
+      ChangeAppleAnswersPage.onPageSubmitById()
+
+      //TODO: Delete the different details-updated pages and create a common details-updated page after CARF-353 is merged
+      Then("the Organisation user is routed to '/details-updated' page")
+      DetailsUpdatedForApplePage.onPage()
     }
 
     // **************************************************
-    // 5. Organisation user without CT-UTR enrolment - RCASP is not user - Second contact details change journey
+    // 6. Individual RCASP change journey
     // **************************************************
     Scenario("6 - Individual RCASP change journey", ManagementTests, ZapTests) {
-      // TODO: To be added as part of CARF-354
+      Given("the Organisation user logs in with a valid CARF ID")
+      AuthLoginPage.loginAsOrgAdminWithoutCtUtr("RA1111")
+
+      And("the Organisation user clicks 'Manage your RCASPs' link on the '/manage-cryptoasset-reports' page")
+      ServiceHomePage.clickOnLink(ServiceHomePage.manageYourRcaspsLink)
+
+      And("the Organisation user clicks on 'Change' link on the '/your-rcasps' page for an individual RCASP")
+      YourRcaspsPage.clickOnLink(YourRcaspsPage.changeLinkFor("Nemona Champion"))
+
+      And("the Organisation user clicks on 'Change reporting cryptoasset service provider name' link on '/manage-your-rcasps/change-answers/:CARFID' page")
+      ChangeNemonaAnswersPage.clickOnLink(ChangeNemonaAnswersPage.changeNameLink)
+
+      And("the Organisation user updates the individual RCASP's first name and last name on '/manage-your-rcasps/change-individual-name' page")
+      IndividualNameChangeModePage.enterIndName("Updated Firstname", "Updated Lastname")
+
+      And("the Organisation user clicks on 'Change email address' link on '/manage-your-rcasps/change-answers/:CARFID' page")
+      ChangeNemonaAnswersPage.clickOnLink(ChangeNemonaAnswersPage.changeEmailLink)
+
+      And("the Organisation user updates the individual RCASP's email on '/manage-your-rcasps/change-individual-name' page")
+      IndividualEmailChangeModePage.enterIndEmail("updated.tester@test.com")
+
+      And("the Organisation user clicks on 'Can we contact the RCASP by phone?' link on '/manage-your-rcasps/change-answers/:CARFID' page")
+      ChangeNemonaAnswersPage.clickOnLink(ChangeNemonaAnswersPage.changeHavePhoneLink)
+
+      And("the Organisation user selects 'yes' on '/manage-your-rcasps/change-individual-have-phone' page")
+      IndividualHavePhoneChangeModePage.select("Yes")
+
+      And("the Organisation user enters the RCASP's phone number in the '/manage-your-rcasps/change-individual-phone' page")
+      IndividualPhoneChangeModePage.enterIndPhone("1234567890")
+
+      And("the Organisation user clicks on 'Confirm and send' button on '/manage-your-rcasps/change-answers/:CARFID' page")
+      ChangeNemonaAnswersPage.onPageSubmitById()
+
+      //TODO: Delete the different details-updated pages and create a common details-updated page after CARF-353 is merged
+      Then("the Organisation user is routed to '/details-updated' page")
+      DetailsUpdatedForNemonaPage.onPage()
     }
 
     // **************************************************

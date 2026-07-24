@@ -16,14 +16,7 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
+object SecondContactHavePhoneChangeModePage extends BasePage {
 
-object IndividualNamePage extends BasePage {
-  override val pageUrl: String = baseUrl + "/manage-your-rcasps/individual-name"
-
-  private val indFirstNameID = By.id("firstName")
-  private val indLastNameID  = By.id("lastName")
-
-  def enterIndName(firstNameValue: String, lastNameValue: String): Unit =
-    fillFieldsAndContinue((indFirstNameID, firstNameValue), (indLastNameID, lastNameValue))
+  override val pageUrl: String = baseUrl + "/manage-your-rcasps/change-second-contact-have-phone"
 }

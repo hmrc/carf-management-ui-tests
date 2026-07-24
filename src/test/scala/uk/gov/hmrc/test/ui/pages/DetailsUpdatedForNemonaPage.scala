@@ -16,14 +16,9 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
+object DetailsUpdatedForNemonaPage extends BasePage {
 
-object IndividualNamePage extends BasePage {
-  override val pageUrl: String = baseUrl + "/manage-your-rcasps/individual-name"
+  override val pageUrl: String =
+    baseUrl + "/manage-your-rcasps/placeholder?message=Successful+submission+for+ZMCAR0123456782.+Should+redirect+to+%2Fdetails-updated+%28CARF-353%29"
 
-  private val indFirstNameID = By.id("firstName")
-  private val indLastNameID  = By.id("lastName")
-
-  def enterIndName(firstNameValue: String, lastNameValue: String): Unit =
-    fillFieldsAndContinue((indFirstNameID, firstNameValue), (indLastNameID, lastNameValue))
 }
