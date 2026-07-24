@@ -198,6 +198,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
     // 5. Organisation user without CT-UTR enrolment - RCASP is not user - Second contact details change journey
     // **************************************************
     Scenario("5 - Organisation user without CT-UTR enrolment - RCASP is not user - Second contact details change journey", ManagementTests, ZapTests) {
+
       Given("the Organisation user logs in with a valid CARF ID")
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr("RN1111")
 
@@ -231,6 +232,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
       // TODO: Delete the different details-updated pages and create a common details-updated page after CARF-353 is merged
       Then("the Organisation user is routed to '/details-updated' page")
       DetailsUpdatedForApplePage.onPage()
+
     }
 
     // **************************************************
