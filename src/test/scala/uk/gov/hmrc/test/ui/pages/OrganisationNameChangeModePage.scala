@@ -18,14 +18,11 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
 
-object ChangeAnswersPage extends BasePage {
-  override val pageUrl: String = baseUrl + "/manage-your-rcasps/change-answers/ZMCAR0123456788"
+object OrganisationNameChangeModePage extends BasePage {
+  override val pageUrl: String = baseUrl + "/manage-your-rcasps/change-organisation-name"
 
-    val changeOrganisationNameLink: By = By.cssSelector("a[href*='change-organisation-name']")
-    val changeMainBusinessAddressLink: By = By.cssSelector("a[href*='change-find-address']")
-    val changeContactNameLink: By = By.cssSelector("a[href*='change-contact-name']")
-    val changeEmailLink: By = By.cssSelector("a[href*='change-email']")
-    val changeHavePhoneLink: By = By.cssSelector("a[href*='change-have-phone']")
-    val changeHaveSecondContactLink: By = By.cssSelector("a[href*='change-have-second-contact']")
+  private val orgNameInput = By.id("value")
 
+  def enterOrgName(orgNameValue: String): Unit =
+    fillFieldsAndContinue((orgNameInput, orgNameValue))
 }

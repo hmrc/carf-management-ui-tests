@@ -125,10 +125,65 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks on 'Change' link on the '/your-rcasps' page")
       YourRcaspsPage.clickOnLink(YourRcaspsPage.changeLinkFor("Amazon UK"))
 
-      Then("the Organisation user is routed to '/change-answers/:CARFID' page")
-      ChangeAnswersPage.onPage()
+      And("the Organisation user clicks on 'Change organisation name' link on '/manage-your-rcasps/change-answers/:CARFID' page")
+      ChangeAnswersPage.clickOnLink(ChangeAnswersPage.changeOrganisationNameLink)
 
-      // TODO: Continue journey till /details-updated page
+      And("the Organisation user changes the name in '/manage-your-rcasps/change-organisation-name' page")
+      OrganisationNameChangeModePage.enterOrgName("New Org Ltd")
+
+      And("the Organisation user clicks on 'Change main business address' link on '/manage-your-rcasps/change-answers/:CARFID' page")
+      ChangeAnswersPage.clickOnLink(ChangeAnswersPage.changeMainBusinessAddressLink)
+
+      And(
+        "the Organisation user enters the postcode and property number on the '/manage-your-rcasps/change-find-address' page"
+      )
+      FindAddressChangeModePage.enterPostcodeAndProperty(TestData.postcode, "")
+
+      And("the Organisation user chooses 'None of these' on the '/manage-your-rcasps/change-choose-address' page")
+      ChooseAddressChangeModePage.selectAddressAs("none of these")
+
+      And("the Organisation user enters the address manually in the '/manage-your-rcasps/change-address' page")
+      AddressChangeModePage.enterYourAddress("1 Updated Test Street", "Updated Test Town", "AB1 2CD")
+
+      And("the Organisation user clicks on 'Change first contact name' link on '/manage-your-rcasps/change-answers/:CARFID' page")
+      ChangeAnswersPage.clickOnLink(ChangeAnswersPage.changeContactNameLink)
+
+      And("the Organisation user updates the first contact name in the '/manage-your-rcasps/change-contact-name' page ")
+      ContactNameChangeModePage.enterContactName("Updated First Contact")
+
+      And("the Organisation user clicks on 'Change first contact email address' link on '/manage-your-rcasps/change-answers/:CARFID' page")
+      ChangeAnswersPage.clickOnLink(ChangeAnswersPage.changeEmailLink)
+
+      And("the Organisation user updates the first contact email in the '/manage-your-rcasps/change-email' page ")
+      EmailChangeModePage.enterEmail("UpdatedFirstContact@test.com")
+
+      And("the Organisation user clicks on 'Change if we can contact the first contact by phone' link on '/manage-your-rcasps/change-answers/:CARFID' page")
+      ChangeAnswersPage.clickOnLink(ChangeAnswersPage.changeHavePhoneLink)
+
+      And("the Organisation user updates the first contact phone preference in the '/manage-your-rcasps/change-have-phone' page ")
+      HavePhoneChangeModePage.select("yes")
+
+      And("the Organisation user enters first contact phone number in the '/manage-your-rcasps/change-phone' page ")
+      PhoneChangeModePage.enterPhone("1234567890")
+
+      And("the Organisation user clicks on 'Change if the organisation has a second contact' link on '/manage-your-rcasps/change-answers/:CARFID' page")
+      ChangeAnswersPage.clickOnLink(ChangeAnswersPage.changeHaveSecondContactLink)
+
+      And("the Organisation user updates the second contact preference in the '/manage-your-rcasps/change-have-second-contact' page ")
+      HaveSecondContactChangeModePage.select("yes")
+
+      And("the Organisation user enters the second contact name in the '/manage-your-rcasps/second-contact-name' page ")
+      SecondContactNamePage.enterSecondContactName("Second Tester")
+
+      And("the Organisation user enters the second contact email in the '/manage-your-rcasps/second-contact-email' page")
+      SecondContactEmailPage.enterEmailAddress("second.tester@test.com")
+
+      And("the Organisation user enters the second contact phone preference in the '/manage-your-rcasps/second-contact-have-phone' page")
+      SecondContactHavePhonePage.select("Yes")
+
+      And("the Organisation user enters the second contact phone in the '/manage-your-rcasps/second-contact-phone' page")
+      SecondContactPhonePage.enterPhoneNumber("1234567890")
+
     }
 
     // **************************************************
