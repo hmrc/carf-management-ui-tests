@@ -161,13 +161,13 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user selects 'No' on the '/user-access/:CARFID' page")
       RemoveUserAccessPage.select("No")
 
-      And("the Organisation user selects 'No' on the 'other-access/:CARFID' page")
+      And("the Organisation user selects 'No' on the 'other-access' page")
       RemoveOtherAccessPage.select("No")
 
       And("the Organisation user selects 'Yes' on the '/remove-rcasp' page")
       RemoveRcaspPage.select("Yes")
 
-      And("the Organisation user clicks Back to manage your RCASPs link on '/rcasp-removed' page ")
+      And("the Organisation user clicks 'Back to manage your RCASPs' link on '/rcasp-removed' page ")
       RcaspRemovedPage.clickOnLink(RcaspRemovedPage.backToManageYourRcaspLink)
 
       And("the Organisation user clicks on 'Remove' link on the '/your-rcasps' page")
