@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2026 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,15 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.specs
+package uk.gov.hmrc.test.ui.pages
 
-import org.scalatest.featurespec.AnyFeatureSpec
-import org.scalatest.matchers.should.Matchers
-import org.scalatest.{BeforeAndAfterEach, GivenWhenThen}
-import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
+import org.openqa.selenium.By
 
-trait BaseSpec extends AnyFeatureSpec with GivenWhenThen with Matchers with BeforeAndAfterEach with Browser with ScreenshotOnFailure {
+object OrganisationNameChangeModePage extends BasePage {
+  override val pageUrl: String = baseUrl + "/manage-your-rcasps/change-organisation-name"
 
-  override def beforeEach(): Unit =
-    startBrowser()
+  private val orgNameInput = By.id("value")
 
-  override def afterEach(): Unit =
-    quitBrowser()
-
+  def enterOrgName(orgNameValue: String): Unit =
+    fillFieldsAndContinue((orgNameInput, orgNameValue))
 }

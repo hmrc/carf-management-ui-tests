@@ -17,15 +17,15 @@
 package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
+import uk.gov.hmrc.test.ui.pages.BasePage
 
-object ChangeAnswersPage extends BasePage {
-  override val pageUrl: String = baseUrl + "/manage-your-rcasps/change-answers/ZMCAR0123456788"
+object AddressChangeModePage extends BasePage {
+  override val pageUrl: String = baseUrl + "/manage-your-rcasps/change-address"
 
-    val changeOrganisationNameLink: By = By.cssSelector("a[href*='change-organisation-name']")
-    val changeMainBusinessAddressLink: By = By.cssSelector("a[href*='change-find-address']")
-    val changeContactNameLink: By = By.cssSelector("a[href*='change-contact-name']")
-    val changeEmailLink: By = By.cssSelector("a[href*='change-email']")
-    val changeHavePhoneLink: By = By.cssSelector("a[href*='change-have-phone']")
-    val changeHaveSecondContactLink: By = By.cssSelector("a[href*='change-have-second-contact']")
+  private val addressLine1ID = By.id("addressLine1")
+  private val townOrCityID   = By.id("townOrCity")
+  private val postcodeID     = By.id("postcode")
 
+  def enterYourAddress(addressLine1: String, townOrCity: String, postcode: String): Unit =
+    fillFieldsAndContinue((addressLine1ID, addressLine1), (townOrCityID, townOrCity), (postcodeID, postcode))
 }
