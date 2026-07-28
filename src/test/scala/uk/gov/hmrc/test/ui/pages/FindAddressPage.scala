@@ -20,14 +20,9 @@ import org.openqa.selenium.By
 
 object FindAddressPage extends BasePage {
 
-  override val pageUrl: String =
-    baseUrl + "/manage-your-rcasps/find-address"
+  override val pageUrl: String = baseUrl + "/manage-your-rcasps/find-address"
 
-  def navigateToFindAddressPage: this.type = { // TODO: Remove this method once the previous pages are implemented
-    driver.navigate().to(pageUrl)
-    onPage()
-    this
-  }
+  val enterTheAddressManuallyLink = By.id("manualAddressLink")
 
   private val postcodeId     = By.id("postcode")
   private val propertyNameId = By.id("propertyNameOrNumber")

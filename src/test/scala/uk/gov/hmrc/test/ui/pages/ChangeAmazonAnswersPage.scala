@@ -22,6 +22,8 @@ object ChangeAmazonAnswersPage extends BasePage {
   override val pageUrl: String = baseUrl + "/manage-your-rcasps/change-answers/ZMCAR0123456788"
 
   val changeOrganisationNameLink: By    = By.cssSelector("a[href*='change-organisation-name']")
+  val changeHaveTradingNameLink: By     = By.cssSelector("a[href*='change-have-trading-name']")
+  val changeUtrLink: By                 = By.cssSelector("a[href*='change-utr']")
   val changeMainBusinessAddressLink: By = By.cssSelector("a[href*='change-find-address']")
   val changeContactNameLink: By         = By.cssSelector("a[href*='change-contact-name']")
   val changeEmailLink: By               = By.cssSelector("a[href*='change-email']")

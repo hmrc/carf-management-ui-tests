@@ -21,8 +21,11 @@ import org.openqa.selenium.By
 object ChangeNemonaAnswersPage extends BasePage {
   override val pageUrl: String = baseUrl + "/manage-your-rcasps/change-answers/ZMCAR0123456782"
 
-  val changeNameLink: By      = By.cssSelector("a[href*='change-individual-name']")
-  val changeEmailLink: By     = By.cssSelector("a[href*='change-individual-email']")
-  val changeHavePhoneLink: By = By.cssSelector("a[href*='change-individual-have-phone']")
+  val changeOrganisationOrIndividualLink: By = By.cssSelector("a[href*='change-organisation-or-individual']")
+  val changeNameLink: By                     = By.cssSelector("a[href*='change-individual-name']")
+  val changeEmailLink: By                    = By.cssSelector("a[href*='change-individual-email']")
+  val changeHavePhoneLink: By                = By.cssSelector("a[href*='change-individual-have-phone']")
+  val changeNiNumberLink: By                 = By.cssSelector("a[href*='change-ni-number']")
+  val changeMainBusinessAddressLink: By      = By.cssSelector("a[href*='change-find-address']")
 
 }
