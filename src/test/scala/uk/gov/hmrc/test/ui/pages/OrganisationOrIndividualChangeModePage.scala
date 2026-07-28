@@ -16,9 +16,21 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object DetailsUpdatedForApplePage extends BasePage {
+import org.openqa.selenium.By
 
-  override val pageUrl: String =
-    baseUrl + "/manage-your-rcasps/placeholder?message=Successful+submission+for+ZMCAR0123456786.+Should+redirect+to+%2Fdetails-updated+%28CARF-353%29"
+object OrganisationOrIndividualChangeModePage extends BasePage {
+  override val pageUrl: String = baseUrl + "/manage-your-rcasps/change-organisation-or-individual"
 
+  private val organisationRadioId = By.id("value_0")
+  private val individualRadioId   = By.id("value_1")
+
+  def getId(registrationType: String): By =
+    registrationType match {
+      case "Organisation" => organisationRadioId
+      case "Individual"   => individualRadioId
+
+    }
+
+  def selectRcaspType(registrationType: String): Unit =
+    selectRadioAndContinue(getId(registrationType))
 }

@@ -18,19 +18,22 @@ package uk.gov.hmrc.test.ui.specs
 
 import uk.gov.hmrc.test.ui.pages.*
 import uk.gov.hmrc.test.ui.specs.tags.{ManagementTests, ZapTests}
-import uk.gov.hmrc.test.ui.utils.TestData
+import uk.gov.hmrc.test.ui.utils.*
+
 class ManageYourRcaspsSpec extends BaseSpec {
 
   Feature("Manage RCASPS journeys for Organisation & Individual") {
     // Scenarios covered
-
     // 1. Organisation user without CT-UTR enrolment, with RCASPs added - Navigating to add journey
     // 2. Individual user with RCASPs added - Navigating to add journey
     // 3. Organisation user with CT-UTR enrolment - RCASP is user - Change journey
-    // 4. Organisation user without CT-UTR enrolment - RCASP is not user - Change journey
-    // 5. Organisation user without CT-UTR enrolment - RCASP is not user - Second contact details change journey
-    // 6. Individual RCASP change journey
-    // 7. Organisation without CT-UTR enrolment - Remove journey
+    // 4. Organisation user with CT-UTR enrolment - RCASP is user - Change ReportForRegisteredBusiness to false
+    // 5. Organisation user without CT-UTR enrolment - RCASP is not user - Change journey
+    // 6. Organisation user without CT-UTR enrolment - RCASP is not user - Second contact details change journey
+    // 7. Organisation user without CT-UTR enrolment - RCASP is not user - Change to Individual journey
+    // 8. Individual RCASP change journey
+    // 9. Individual RCASP - change to Organisation journey
+    // 10. Organisation without CT-UTR enrolment - Remove journey
 
     // **************************************************
     // 1. Organisation user without CT-UTR enrolment, with RCASPs added - Navigating to add journey
@@ -93,6 +96,12 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user selects 'Yes' on the 'registered-business/change-is-this-your-business-name' page")
       IsThisYourBusinessNameChangeModePage.select("Yes")
 
+      And("the Organisation user clicks on 'Change if the organisation trades under a different name' link in the '/registered-business/change-answers/:CARFID' page")
+      RegisteredBusinessChangeAnswersPage.clickOnLink(RegisteredBusinessChangeAnswersPage.changeHaveTradingNameLink)
+
+      And("the Organisation user selects 'No' on the '/change-have-trading-name' page")
+      HaveTradingNameChangeModePage.select("No")
+
       And("the Organisation user clicks on 'Change main business address' link in the '/registered-business/change-answers/:CARFID' page")
       RegisteredBusinessChangeAnswersPage.clickOnLink(RegisteredBusinessChangeAnswersPage.changeMainBusinessAddressLink)
 
@@ -110,13 +119,18 @@ class ManageYourRcaspsSpec extends BaseSpec {
 
       // TODO: Delete the different details-updated pages and create a common details-updated page after CARF-353 is merged
       Then("the Organisation user is routed to '/details-updated' page")
-      DetailsUpdatedForTimmysTurtlesPage.onPage()
+      DetailsUpdated.onPage()
     }
 
     // **************************************************
-    // 4. Organisation user without CT-UTR enrolment - RCASP is not user - Change journey
+    // 4. Organisation user with CT-UTR enrolment - RCASP is user - Change ReportForRegisteredBusiness to false
     // **************************************************
-    Scenario("4 - Organisation user without CT-UTR enrolment - RCASP is not user - Change journey", ManagementTests, ZapTests) {
+    // TODO: Add scripts after CARF-351 is implemented
+
+    // **************************************************
+    // 5. Organisation user without CT-UTR enrolment - RCASP is not user - Change journey
+    // **************************************************
+    Scenario("5 - Organisation user without CT-UTR enrolment - RCASP is not user - Change journey", ManagementTests, ZapTests) {
       Given("the Organisation user logs in with a valid CARF ID")
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr("RN1111")
 
@@ -131,6 +145,21 @@ class ManageYourRcaspsSpec extends BaseSpec {
 
       And("the Organisation user changes the name in '/change-organisation-name' page")
       OrganisationNameChangeModePage.enterOrgName("New Org Ltd")
+
+      And("the Organisation user clicks on 'Change if the organisation trades under a different name' link in the '/change-answers/:CARFID' page")
+      ChangeAmazonAnswersPage.clickOnLink(ChangeAmazonAnswersPage.changeHaveTradingNameLink)
+
+      And("the Organisation user selects 'Yes' on the '/change-have-trading-name' page")
+      HaveTradingNameChangeModePage.select("Yes")
+
+      And("the Organisation user enters the trading name in the '/change-trading-name' page")
+      TradingNameChangeModePage.enterTradingName("New Trading Name")
+
+      And("the Organisation user clicks on 'Change Unique Taxpayer Reference' link on '/change-answers/:CARFID' page")
+      ChangeAmazonAnswersPage.clickOnLink(ChangeAmazonAnswersPage.changeUtrLink)
+
+      And("the Organisation user enters the utr in the '/change-utr' page")
+      UtrChangeModePage.enterUtr("1234567890")
 
       And("the Organisation user clicks on 'Change main business address' link on '/change-answers/:CARFID' page")
       ChangeAmazonAnswersPage.clickOnLink(ChangeAmazonAnswersPage.changeMainBusinessAddressLink)
@@ -195,9 +224,9 @@ class ManageYourRcaspsSpec extends BaseSpec {
     }
 
     // **************************************************
-    // 5. Organisation user without CT-UTR enrolment - RCASP is not user - Second contact details change journey
+    // 6. Organisation user without CT-UTR enrolment - RCASP is not user - Second contact details change journey
     // **************************************************
-    Scenario("5 - Organisation user without CT-UTR enrolment - RCASP is not user - Second contact details change journey", ManagementTests, ZapTests) {
+    Scenario("6 - Organisation user without CT-UTR enrolment - RCASP is not user - Second contact details change journey", ManagementTests, ZapTests) {
 
       Given("the Organisation user logs in with a valid CARF ID")
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr("RN1111")
@@ -231,14 +260,55 @@ class ManageYourRcaspsSpec extends BaseSpec {
 
       // TODO: Delete the different details-updated pages and create a common details-updated page after CARF-353 is merged
       Then("the Organisation user is routed to '/details-updated' page")
-      DetailsUpdatedForApplePage.onPage()
+      DetailsUpdated.onPage()
 
     }
 
     // **************************************************
-    // 6. Individual RCASP change journey
+    // 7. Organisation user without CT-UTR enrolment - RCASP is not user - Change to Individual journey
     // **************************************************
-    Scenario("6 - Individual RCASP change journey", ManagementTests, ZapTests) {
+    Scenario("7. Organisation user without CT-UTR enrolment - RCASP is not user - Change to Individual journey", ManagementTests, ZapTests) {
+
+      Given("the Organisation user logs in with a valid CARF ID")
+      AuthLoginPage.loginAsOrgAdminWithoutCtUtr("RN1111")
+
+      And("the Organisation user clicks 'Manage your RCASPs' link on the '/manage-cryptoasset-reports' page")
+      ServiceHomePage.clickOnLink(ServiceHomePage.manageYourRcaspsLink)
+
+      And("the Organisation user clicks on 'Change' link on the '/your-rcasps' page")
+      YourRcaspsPage.clickOnLink(YourRcaspsPage.changeLinkFor("Apple"))
+
+      And("the Organisation user clicks on 'Change if this reporting cryptoasset service provider is an organisation or individual' link on '/change-answers/:CARFID' page")
+      ChangeAppleAnswersPage.clickOnLink(ChangeAppleAnswersPage.changeOrganisationOrIndividualLink)
+
+      And("the Organisation user selects 'Individual' on the '/change-organisation-or-individual' page")
+      OrganisationOrIndividualChangeModePage.selectRcaspType("Individual")
+
+      And("the Organisation user enters first name and last name for the Individual RCASP on '/individual-name' page")
+      IndividualNamePage.enterIndName("Firstname", "Lastname")
+
+      And("the Organisation user enters the NI number for the Individual RCASP on '/ni-number' page")
+      IndividualNiNumberPage.enterNiNumber("AB123456C")
+
+      And("the Organisation user clicks on 'Enter the address manually link' on '/find-address' page")
+      FindAddressPage.clickOnLink(FindAddressPage.enterTheAddressManuallyLink)
+
+      And("the Organisation user enters the Individual RCASP address on '/address' page")
+      AddressPage.enterYourAddress("Line 1", "Fancy Town", "DI5 9EY")
+
+      And("the Organisation  user enters the Individual RCASP email on '/individual-email' page ")
+      IndividualEmailPage.enterIndEmail("mickey.mouse@gmail.com")
+
+      And("the Organisation user selects 'No' on '/individual-have-phone' page")
+      IndividualHavePhonePage.select("No")
+
+      // TODO: Add the navigation to /change-answers and /details-updated after CARF-559 has been implemented
+    }
+
+    // **************************************************
+    // 8. Individual RCASP change journey
+    // **************************************************
+    Scenario("8 - Individual RCASP change journey", ManagementTests, ZapTests) {
       Given("the Organisation user logs in with a valid CARF ID")
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr("RA1111")
 
@@ -253,6 +323,23 @@ class ManageYourRcaspsSpec extends BaseSpec {
 
       And("the Organisation user updates the individual RCASP's first name and last name on '/change-individual-name' page")
       IndividualNameChangeModePage.enterIndName("Updated Firstname", "Updated Lastname")
+
+      And("the Organisation user clicks on 'Change National Insurance number' link on '/change-answers/:CARFID' page")
+      ChangeNemonaAnswersPage.clickOnLink(ChangeNemonaAnswersPage.changeNiNumberLink)
+
+      And("the Organisation user updates the individual RCASP's NI number on '/change-ni-number' page")
+      IndividualNiNumberChangeModePage.enterNiNumber("AB234567D")
+
+      And("the Organisation user clicks on 'Change main business address' link on '/change-answers/:CARFID' page")
+      ChangeNemonaAnswersPage.clickOnLink(ChangeNemonaAnswersPage.changeMainBusinessAddressLink)
+
+      And(
+        "the Organisation user enters the postcode and property number on the '/change-find-address' page"
+      )
+      FindAddressChangeModePage.enterPostcodeAndProperty(TestData.postcode, TestData.propertyNumber)
+
+      And("the Organisation user clicks 'Confirm address' button on the '/change-review-address' page")
+      ReviewAddressChangeModePage.onPageSubmitById()
 
       And("the Organisation user clicks on 'Change email address' link on '/change-answers/:CARFID' page")
       ChangeNemonaAnswersPage.clickOnLink(ChangeNemonaAnswersPage.changeEmailLink)
@@ -274,13 +361,68 @@ class ManageYourRcaspsSpec extends BaseSpec {
 
       // TODO: Delete the different details-updated pages and create a common details-updated page after CARF-353 is merged
       Then("the Organisation user is routed to '/details-updated' page")
-      DetailsUpdatedForNemonaPage.onPage()
+      DetailsUpdated.onPage()
     }
 
     // **************************************************
-    // 7. Organisation without CT-UTR enrolment - Remove journey
+    // 9. Individual RCASP - change to Organisation journey
     // **************************************************
-    Scenario("7 - Organisation without CT-UTR enrolment - Remove journey", ManagementTests, ZapTests) {
+    Scenario("9. Individual RCASP - change to Organisation journey", ManagementTests, ZapTests) {
+      Given("the Organisation user logs in with a valid CARF ID")
+      AuthLoginPage.loginAsOrgAdminWithoutCtUtr("RA1111")
+
+      And("the Organisation user clicks 'Manage your RCASPs' link on the '/manage-cryptoasset-reports' page")
+      ServiceHomePage.clickOnLink(ServiceHomePage.manageYourRcaspsLink)
+
+      And("the Organisation user clicks on 'Change' link on the '/your-rcasps' page")
+      YourRcaspsPage.clickOnLink(YourRcaspsPage.changeLinkFor("Nemona Champion"))
+
+      And("the Organisation user clicks on 'Change if this reporting cryptoasset service provider is an organisation or individual' link on '/change-answers/:CARFID' page")
+      ChangeNemonaAnswersPage.clickOnLink(ChangeNemonaAnswersPage.changeOrganisationOrIndividualLink)
+
+      And("the Organisation user selects 'Organisation' on the '/change-organisation-or-individual' page")
+      OrganisationOrIndividualChangeModePage.selectRcaspType("Organisation")
+
+      And("the Organisation user enters organisation name in the '/organisation-name' page")
+      OrganisationNamePage.enterOrgName("Hello World Ltd")
+
+      And("the Organisation user selects 'Yes' on the '/have-trading-name' page ")
+      HaveTradingNamePage.select("Yes")
+
+      And("the Organisation user enters trading name in the '/trading-name' page")
+      TradingNamePage.enterTradingName("New World Ltd")
+
+      And("the Organisation user enters the UTR in the '/utr' page")
+      UtrPage.enterUtr("1234567890")
+
+      And("the organisation user enters the postcode and property number in the '/find-address' page")
+      FindAddressPage.enterPostcodeAndProperty(TestData.postcode, "")
+
+      And("the Organisation user chooses address on the '/choose-address' page")
+      ChooseAddressPage.selectRadioAndContinue(ChooseAddressPage.secondAddressRadioButtonId)
+
+      And("the Organisation user enters team name in '/contact-name' page")
+      ContactNamePage.enterContactName("Carf Team")
+
+      And("the Organisation user enters email in '/manage-your-rcasps/email' page")
+      EmailPage.enterEmail("carf.team@outlook.com")
+
+      And("the Organisation user selects 'Yes' in the '/have-phone' page")
+      HavePhonePage.select("Yes")
+
+      And("the Organisation user enters phone number in the '/phone' page")
+      PhonePage.enterPhone("07556734510")
+
+      And("the Organisation user selects 'Yes' in the '/have-second-contact' page")
+      HaveSecondContactPage.select("No")
+
+      // TODO: Add the navigation to /change-answers and /details-updated after CARF-559 has been implemented
+    }
+
+    // **************************************************
+    // 10. Organisation without CT-UTR enrolment - Remove journey
+    // **************************************************
+    Scenario("10 - Organisation without CT-UTR enrolment - Remove journey", ManagementTests, ZapTests) {
       Given("the Organisation user logs in with a valid CARF ID")
       AuthLoginPage.loginAsOrgAdminWithoutCtUtr("RG11")
 

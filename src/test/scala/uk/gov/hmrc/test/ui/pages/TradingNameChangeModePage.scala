@@ -16,9 +16,14 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-object DetailsUpdatedForNemonaPage extends BasePage {
+import org.openqa.selenium.By
 
-  override val pageUrl: String =
-    baseUrl + "/manage-your-rcasps/placeholder?message=Successful+submission+for+ZMCAR0123456782.+Should+redirect+to+%2Fdetails-updated+%28CARF-353%29"
+object TradingNameChangeModePage extends BasePage {
 
+  override val pageUrl: String = baseUrl + "/manage-your-rcasps/change-trading-name"
+
+  private val tradingNameInput = By.id("value")
+
+  def enterTradingName(tradingNameValue: String): Unit =
+    fillFieldsAndContinue((tradingNameInput, tradingNameValue))
 }

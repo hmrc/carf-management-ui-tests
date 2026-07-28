@@ -23,5 +23,6 @@ object RegisteredBusinessChangeAnswersPage extends BasePage {
 
   val changeOrganisationNameLink: By    = By.cssSelector("a[href*='change-is-this-your-business-name']")
   val changeMainBusinessAddressLink: By = By.cssSelector("a[href*='change-is-the-address-correct']")
+  val changeHaveTradingNameLink: By     = By.cssSelector("a[href*='change-have-trading-name']")
 
 }
