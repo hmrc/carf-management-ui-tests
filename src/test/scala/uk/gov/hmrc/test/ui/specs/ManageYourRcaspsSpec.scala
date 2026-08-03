@@ -181,6 +181,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks on 'Confirm and add' button on '/check-answers' page")
       // TODO: Add the navigation to /change-answers and /details-updated after CARF-559 has been implemented
       CheckAnswersPage.onPageSubmitById()
+      // TODO: verify details updated page after CARF-559
     }
     // **************************************************
     // 5. Organisation user without CT-UTR enrolment - RCASP is not user - Change journey
