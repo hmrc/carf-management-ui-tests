@@ -80,7 +80,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
     // **************************************************
     // 3. Organisation user with CT-UTR enrolment - RCASP is user - Change journey
     // **************************************************
-    Scenario("3 - Organisation user with CT-UTR enrolment - RCASP is user - Change journey", ManagementTests, ZapTests) {
+    Scenario("3 - Organisation user with CT-UTR enrolment - RCASP is user - Change details journey", ManagementTests, ZapTests) {
       Given("the Organisation user logs in with a valid CARF ID")
       AuthLoginPage.loginAsOrgAdminWithCtUtr("RA11")
 
@@ -125,8 +125,63 @@ class ManageYourRcaspsSpec extends BaseSpec {
     // **************************************************
     // 4. Organisation user with CT-UTR enrolment - RCASP is user - Change ReportForRegisteredBusiness to false
     // **************************************************
-    // TODO: Add scripts after CARF-351 is implemented
 
+    Scenario("4 - Organisation user with CT-UTR enrolment - RCASP is user Yes to No - Change journey", ManagementTests, ZapTests) {
+      Given("the Organisation user logs in with a valid CARF ID")
+      AuthLoginPage.loginAsOrgAdminWithCtUtr("RA11")
+
+      And("the Organisation user clicks 'Manage your RCASPs' link on the '/manage-cryptoasset-reports' page")
+      ServiceHomePage.clickOnLink(ServiceHomePage.manageYourRcaspsLink)
+
+      And("the Organisation user clicks on 'Change' link on the '/your-rcasps' page")
+      YourRcaspsPage.clickOnLink(YourRcaspsPage.changeLinkFor("Timmy's Turtles"))
+
+      And("the Organisation user clicks on 'Is this RCASP the business you registered as' link in the '/registered-business/change-answers/:CARFID' page")
+      RegisteredBusinessChangeAnswersPage.clickOnLink(RegisteredBusinessChangeAnswersPage.changeIsRcaspTheRegisteredBusinessLink)
+
+      And("the Organisation user selects 'No' on '/change-report-for-registered-business' page")
+      ReportForRegisteredBusinessChangeModePage.select("No")
+
+      And("the Organisation user selects 'Organisation' on the '/organisation-or-individual' page")
+      OrganisationOrIndividualPage.selectRcaspType("Organisation")
+
+      And("the Organisation user enters organisation name in the '/organisation-name' page")
+      OrganisationNamePage.enterOrgName("Hello World Ltd")
+
+      And("the Organisation user selects 'Yes' on the '/have-trading-name' page ")
+      HaveTradingNamePage.select("Yes")
+
+      And("the Organisation user enters trading name in the '/trading-name' page")
+      TradingNamePage.enterTradingName("New World Ltd")
+
+      And("the Organisation user enters the UTR in the '/utr' page")
+      UtrPage.enterUtr("1234567890")
+
+      And("the organisation user enters the postcode and property number in the '/find-address' page")
+      FindAddressPage.enterPostcodeAndProperty(TestData.postcode, "")
+
+      And("the Organisation user chooses address on the '/choose-address' page")
+      ChooseAddressPage.selectRadioAndContinue(ChooseAddressPage.secondAddressRadioButtonId)
+
+      And("the Organisation user enters team name in '/contact-name' page")
+      ContactNamePage.enterContactName("Carf Team")
+
+      And("the Organisation user enters email in '/manage-your-rcasps/email' page")
+      EmailPage.enterEmail("carf.team@outlook.com")
+
+      And("the Organisation user selects 'Yes' in the '/have-phone' page")
+      HavePhonePage.select("Yes")
+
+      And("the Organisation user enters phone number in the '/phone' page")
+      PhonePage.enterPhone("07556734510")
+
+      And("the Organisation user selects 'Yes' in the '/have-second-contact' page")
+      HaveSecondContactPage.select("No")
+
+      And("the Organisation user clicks on 'Confirm and add' button on '/check-answers' page")
+      // TODO: Add the navigation to /change-answers and /details-updated after CARF-559 has been implemented
+      CheckAnswersPage.onPageSubmitById()
+    }
     // **************************************************
     // 5. Organisation user without CT-UTR enrolment - RCASP is not user - Change journey
     // **************************************************
@@ -164,9 +219,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks on 'Change main business address' link on '/change-answers/:CARFID' page")
       ChangeAmazonAnswersPage.clickOnLink(ChangeAmazonAnswersPage.changeMainBusinessAddressLink)
 
-      And(
-        "the Organisation user enters the postcode and property number on the '/change-find-address' page"
-      )
+      And("the Organisation user enters the postcode and property number on the '/change-find-address' page")
       FindAddressChangeModePage.enterPostcodeAndProperty(TestData.postcode, "")
 
       And("the Organisation user chooses 'None of these' on the '/change-choose-address' page")
@@ -350,7 +403,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks on 'Can we contact the RCASP by phone?' link on '/change-answers/:CARFID' page")
       ChangeNemonaAnswersPage.clickOnLink(ChangeNemonaAnswersPage.changeHavePhoneLink)
 
-      And("the Organisation user selects 'yes' on '/change-individual-have-phone' page")
+      And("the Organisation user selects 'Yes' on '/change-individual-have-phone' page")
       IndividualHavePhoneChangeModePage.select("Yes")
 
       And("the Organisation user enters the RCASP's phone number in the '/change-individual-phone' page")
@@ -416,7 +469,10 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user selects 'Yes' in the '/have-second-contact' page")
       HaveSecondContactPage.select("No")
 
+      And("the Organisation user clicks on 'Confirm and add' button on '/check-answers' page")
       // TODO: Add the navigation to /change-answers and /details-updated after CARF-559 has been implemented
+      CheckAnswersPage.onPageSubmitById()
+
     }
 
     // **************************************************

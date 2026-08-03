@@ -21,8 +21,8 @@ import org.openqa.selenium.By
 object RegisteredBusinessChangeAnswersPage extends BasePage {
   override val pageUrl: String = baseUrl + "/manage-your-rcasps/registered-business/change-answers/ZMCAR0123456787"
 
-  val changeOrganisationNameLink: By    = By.cssSelector("a[href*='change-is-this-your-business-name']")
-  val changeMainBusinessAddressLink: By = By.cssSelector("a[href*='change-is-the-address-correct']")
-  val changeHaveTradingNameLink: By     = By.cssSelector("a[href*='change-have-trading-name']")
-
+  val changeOrganisationNameLink: By             = By.cssSelector("a[href*='change-is-this-your-business-name']")
+  val changeMainBusinessAddressLink: By          = By.cssSelector("a[href*='change-is-the-address-correct']")
+  val changeHaveTradingNameLink: By              = By.cssSelector("a[href*='change-have-trading-name']")
+  val changeIsRcaspTheRegisteredBusinessLink: By = By.cssSelector("a[href*='change-report-for-registered-business']")
 }
