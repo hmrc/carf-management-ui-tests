@@ -178,10 +178,15 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user selects 'Yes' in the '/have-second-contact' page")
       HaveSecondContactPage.select("No")
 
-      And("the Organisation user clicks on 'Confirm and add' button on '/check-answers' page")
-      // TODO: Add the navigation to /change-answers and /details-updated after CARF-559 has been implemented
-      CheckAnswersPage.onPageSubmitById()
-      // TODO: verify details updated page after CARF-559
+      And("the Organisation user clicks on 'Confirm and send' button on '/change-answers' page")
+      ChangeTimmysTurtlesPage.onPageSubmitById()
+
+      And("the Organisation user clicks Back to manage your reporting cryptoasset service providers (RCASPs) link on '/details-updated' page")
+      DetailsUpdated.clickOnLink(DetailsUpdated.backToManageYourRcaspLink)
+
+      Then("the Organisation user is on '/your-rcasps' page")
+      YourRcaspsPage.onPage()
+
     }
     // **************************************************
     // 5. Organisation user without CT-UTR enrolment - RCASP is not user - Change journey
@@ -268,13 +273,14 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user enters the second contact phone in the '/second-contact-phone' page")
       SecondContactPhonePage.enterPhoneNumber("1234567890")
 
-      // TODO: Change this to 'Confirm and send' button on '/change-answers' page once it has been implemented in CARF-559
-      And("the Organisation user clicks on 'Confirm and add' button on '/check-answers' page")
-      CheckAnswersPage.onPageSubmitById()
+      And("the Organisation user clicks on 'Confirm and send' button on '/change-answers' page")
+      ChangeAmazonAnswersPage.onPageSubmitById()
 
-      // TODO: Change this to '/details-updated' page once it has been implemented in CARF-559
-      Then("the Organisation user is routed to '/rcasp-added' page")
-      RcaspAddedPage.onPage()
+      And("the Organisation user clicks Back to manage your reporting cryptoasset service providers (RCASPs) link on '/details-updated' page")
+      DetailsUpdated.clickOnLink(DetailsUpdated.backToManageYourRcaspLink)
+
+      Then("the Organisation user is on '/your-rcasps' page")
+      YourRcaspsPage.onPage()
     }
 
     // **************************************************
@@ -356,7 +362,15 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user selects 'No' on '/individual-have-phone' page")
       IndividualHavePhonePage.select("No")
 
-      // TODO: Add the navigation to /change-answers and /details-updated after CARF-559 has been implemented
+      And("the Organisation user clicks on 'Confirm and send' button on '/change-answers' page")
+      ChangeAppleAnswersPage.onPageSubmitById()
+
+      And("the Organisation user clicks Back to manage your cryptoasset reports link on '/details-updated' page")
+      DetailsUpdated.clickOnLink(DetailsUpdated.backToManageYourCryptoassetReportLink)
+
+      Then("the Organisation user is on '/manage-cryptoasset-reports' page")
+      ServiceHomePage.onPage()
+
     }
 
     // **************************************************
@@ -470,10 +484,14 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user selects 'Yes' in the '/have-second-contact' page")
       HaveSecondContactPage.select("No")
 
-      And("the Organisation user clicks on 'Confirm and add' button on '/check-answers' page")
-      // TODO: Add the navigation to /change-answers and /details-updated after CARF-559 has been implemented
-      CheckAnswersPage.onPageSubmitById()
+      And("the Organisation user clicks on 'Confirm and send' button on '/change-answers' page")
+      ChangeNemonaAnswersPage.onPageSubmitById()
 
+      And("the Organisation user clicks Back to manage your cryptoasset reports link on '/details-updated' page")
+      DetailsUpdated.clickOnLink(DetailsUpdated.backToManageYourCryptoassetReportLink)
+
+      Then("the Organisation user is on '/manage-cryptoasset-reports' page")
+      ServiceHomePage.onPage()
     }
 
     // **************************************************
