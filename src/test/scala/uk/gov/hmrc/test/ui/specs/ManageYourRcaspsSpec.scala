@@ -117,7 +117,6 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks on 'Confirm and send' button in the '/registered-business/change-answers/:CARFID' page")
       RegisteredBusinessChangeAnswersPage.onPageSubmitById()
 
-      // TODO: Delete the different details-updated pages and create a common details-updated page after CARF-353 is merged
       Then("the Organisation user is routed to '/details-updated' page")
       DetailsUpdated.onPage()
     }
@@ -318,7 +317,6 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks on 'Confirm and send' button on '/change-answers/:CARFID' page")
       ChangeAppleAnswersPage.onPageSubmitById()
 
-      // TODO: Delete the different details-updated pages and create a common details-updated page after CARF-353 is merged
       Then("the Organisation user is routed to '/details-updated' page")
       DetailsUpdated.onPage()
 
@@ -427,7 +425,6 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks on 'Confirm and send' button on '/change-answers/:CARFID' page")
       ChangeNemonaAnswersPage.onPageSubmitById()
 
-      // TODO: Delete the different details-updated pages and create a common details-updated page after CARF-353 is merged
       Then("the Organisation user is routed to '/details-updated' page")
       DetailsUpdated.onPage()
     }
