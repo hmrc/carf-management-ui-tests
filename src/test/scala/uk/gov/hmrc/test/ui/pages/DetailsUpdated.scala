@@ -16,9 +16,13 @@
 
 package uk.gov.hmrc.test.ui.pages
 
+import org.openqa.selenium.By
+
 object DetailsUpdated extends BasePage {
 
-  override val pageUrl: String =
-    baseUrl + "/manage-your-rcasps/details-updated"
+  override val pageUrl: String = baseUrl + "/manage-your-rcasps/details-updated"
+
+  val backToManageYourRcaspLink: By             = By.id("manage-your-rcasps-link")
+  val backToManageYourCryptoassetReportLink: By = By.id("manage-your-cryptoassets-report-link")
 
 }
