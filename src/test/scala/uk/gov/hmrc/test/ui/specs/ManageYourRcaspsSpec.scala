@@ -34,6 +34,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
     // 8. Individual RCASP change journey
     // 9. Individual RCASP - change to Organisation journey
     // 10. Organisation without CT-UTR enrolment - Remove journey
+    // 11. Organisation without CT-UTR enrolment - Change contact details from Service home page
 
     // **************************************************
     // 1. Organisation user without CT-UTR enrolment, with RCASPs added - Navigating to add journey
@@ -521,6 +522,32 @@ class ManageYourRcaspsSpec extends BaseSpec {
 
       Then("the Organisation user is on '/problem/page-unavailable' page")
       PageUnavailablePage.onPage()
+    }
+
+    // **************************************************
+    // 11. Organisation without CT-UTR enrolment - Change contact details from Service home page
+    // **************************************************
+    Scenario("11 - Organisation without CT-UTR enrolment - Change contact details", ManagementTests, ZapTests) {
+      Given("the Organisation user logs in with a valid CARF ID")
+      AuthLoginPage.loginAsOrgAdminWithoutCtUtr("RG11")
+
+      And("the Organisation user clicks 'Change your contact details' link on the '/manage-cryptoasset-reports' page")
+      ServiceHomePage.clickOnLink(ServiceHomePage.changeContactDetailsChangeLink)
+
+      And("the Organisation user clicks on 'Change' link to change the first contact name on the '/organisation/details' page")
+      ChangeContactOrgDetailsPage.clickOnLink(ChangeContactOrgDetailsPage.firstContactNameChangeLink)
+
+      And("the Organisation user enters a different first contact name in '/organisation/contact-name' page")
+      ChangeContactOrgContactNamePage.enterContactName("changedName")
+
+      And("the Organisation user clicks on 'Confirm and send' in the '/organisation/details' page")
+      ChangeContactOrgDetailsPage.onPageSubmitById()
+
+      And("the Organisation user clicks on 'Back to manage your cryptoasset reports' link on '/details-updated' page")
+      ContactDetailsUpdatedPage.clickOnLink(ContactDetailsUpdatedPage.backToManageYourCryptoassetReportsLink)
+
+      Then("the Organisation user is on '/manage-cryptoasset-reports' page")
+      ServiceHomePage.onPage()
     }
   }
 }
