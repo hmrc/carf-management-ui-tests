@@ -51,7 +51,6 @@ class ManageYourRcaspsSpec extends BaseSpec {
 
       And("the Organisation user selects 'Organisation' on '/organisation-or-individual' page")
       OrganisationOrIndividualPage.selectRcaspType("Organisation")
-      // TODO: Check if need to Continue journey?
     }
 
     // **************************************************
@@ -75,7 +74,6 @@ class ManageYourRcaspsSpec extends BaseSpec {
 
       And("the Individual user selects 'Individual' on '/organisation-or-individual' page")
       OrganisationOrIndividualPage.selectRcaspType("Individual")
-      // TODO: Check if need to Continue journey?
     }
 
     // **************************************************
