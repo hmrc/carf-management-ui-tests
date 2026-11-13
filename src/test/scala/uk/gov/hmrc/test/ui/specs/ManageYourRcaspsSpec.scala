@@ -26,13 +26,13 @@ class ManageYourRcaspsSpec extends BaseSpec {
     // Scenarios covered
     // 1. Organisation user without CT-UTR enrolment, with RCASPs added - Navigating to add journey
     // 2. Individual user with RCASPs added - Navigating to add journey
-    // 3. Organisation user with CT-UTR enrolment - RCASP is user - Change journey
-    // 4. Organisation user with CT-UTR enrolment - RCASP is user - Change ReportForRegisteredBusiness to false
-    // 5. Organisation user without CT-UTR enrolment - RCASP is not user - Change journey
-    // 6. Organisation user without CT-UTR enrolment - RCASP is not user - Second contact details change journey
-    // 7. Organisation user without CT-UTR enrolment - RCASP is not user - Change to Individual journey
-    // 8. Individual RCASP change journey
-    // 9. Individual RCASP - change to Organisation journey
+    // 3. Organisation user with CT-UTR enrolment - RCASP is user - Change journey TODO: add content checks for 620
+    // 4. Organisation user with CT-UTR enrolment - RCASP is user - Change ReportForRegisteredBusiness to false TODO: add content checks for 620
+    // 5. Organisation user without CT-UTR enrolment - RCASP is not user - Change journey TODO: add content checks for 620
+    // 6. Organisation user without CT-UTR enrolment - RCASP is not user - Second contact details change journey TODO: add content checks for 620
+    // 7. Organisation user without CT-UTR enrolment - RCASP is not user - Change to Individual journey TODO: add content checks for 620
+    // 8. Individual RCASP change journey TODO: add content checks for 620
+    // 9. Individual RCASP - change to Organisation journey TODO: add content checks for 620
     // 10. Organisation without CT-UTR enrolment - Remove journey
     // 11. Organisation without CT-UTR enrolment - Change contact details from Service home page
 
