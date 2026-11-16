@@ -25,4 +25,21 @@ object RegisteredBusinessChangeAnswersPage extends BasePage {
   val changeMainBusinessAddressLink: By          = By.cssSelector("a[href*='change-is-the-address-correct']")
   val changeHaveTradingNameLink: By              = By.cssSelector("a[href*='change-have-trading-name']")
   val changeIsRcaspTheRegisteredBusinessLink: By = By.cssSelector("a[href*='change-report-for-registered-business']")
+
+  val organisationNameKey: String    = "What is the name of the organisation?"
+  val hasTradingNameKey: String      = "Does the organisation trade under a different name?"
+  val tradingNameKey: String         = "What is the trading name for the organisation?"
+  val mainBusinessAddressKey: String = "Main business address"
+
+  def assertUpdatedDetails(
+    organisationName: String,
+    hasTradingName: String,
+    addressLines: Seq[String]
+  ): Unit = {
+    assertSummaryListValue(organisationNameKey, organisationName)
+    assertSummaryListValue(hasTradingNameKey, hasTradingName)
+    if (hasTradingName.equalsIgnoreCase("No"))
+      assertSummaryListRowAbsent(tradingNameKey)
+    assertSummaryListLines(mainBusinessAddressKey, addressLines)
+  }
 }

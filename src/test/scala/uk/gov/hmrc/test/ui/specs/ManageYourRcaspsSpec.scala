@@ -113,6 +113,13 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks on 'Confirm address' button in the '/change-review-address' page")
       ReviewAddressChangeModePage.onPageSubmitById()
 
+      And("the Organisation user sees the updated details on the '/registered-business/change-answers/:RCASPID' page")
+      RegisteredBusinessChangeAnswersPage.assertUpdatedDetails(
+        organisationName = "AutoMatched Org Ltd",
+        hasTradingName = "No",
+        addressLines = TestData.addressLines
+      )
+
       And("the Organisation user clicks on 'Confirm and send' button in the '/registered-business/change-answers/:RCASPID' page")
       RegisteredBusinessChangeAnswersPage.onPageSubmitById()
 
