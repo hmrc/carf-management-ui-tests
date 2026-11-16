@@ -89,19 +89,19 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks on 'Change' link on the '/your-rcasps' page")
       YourRcaspsPage.clickOnLink(YourRcaspsPage.changeLinkFor("Timmy's Turtles"))
 
-      And("the Organisation user clicks on 'Change organisation name' link in the '/registered-business/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Change organisation name' link in the '/registered-business/change-answers/:RCASPID' page")
       RegisteredBusinessChangeAnswersPage.clickOnLink(RegisteredBusinessChangeAnswersPage.changeOrganisationNameLink)
 
       And("the Organisation user selects 'Yes' on the 'registered-business/change-is-this-your-business-name' page")
       IsThisYourBusinessNameChangeModePage.select("Yes")
 
-      And("the Organisation user clicks on 'Change if the organisation trades under a different name' link in the '/registered-business/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Change if the organisation trades under a different name' link in the '/registered-business/change-answers/:RCASPID' page")
       RegisteredBusinessChangeAnswersPage.clickOnLink(RegisteredBusinessChangeAnswersPage.changeHaveTradingNameLink)
 
       And("the Organisation user selects 'No' on the '/change-have-trading-name' page")
       HaveTradingNameChangeModePage.select("No")
 
-      And("the Organisation user clicks on 'Change main business address' link in the '/registered-business/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Change main business address' link in the '/registered-business/change-answers/:RCASPID' page")
       RegisteredBusinessChangeAnswersPage.clickOnLink(RegisteredBusinessChangeAnswersPage.changeMainBusinessAddressLink)
 
       And("the Organisation user clicks on 'No' in the '/registered-business/change-is-the-address-correct' page")
@@ -113,7 +113,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks on 'Confirm address' button in the '/change-review-address' page")
       ReviewAddressChangeModePage.onPageSubmitById()
 
-      And("the Organisation user clicks on 'Confirm and send' button in the '/registered-business/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Confirm and send' button in the '/registered-business/change-answers/:RCASPID' page")
       RegisteredBusinessChangeAnswersPage.onPageSubmitById()
 
       Then("the Organisation user is routed to '/details-updated' page")
@@ -134,7 +134,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks on 'Change' link on the '/your-rcasps' page")
       YourRcaspsPage.clickOnLink(YourRcaspsPage.changeLinkFor("Timmy's Turtles"))
 
-      And("the Organisation user clicks on 'Is this RCASP the business you registered as' link in the '/registered-business/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Is this RCASP the business you registered as' link in the '/registered-business/change-answers/:RCASPID' page")
       RegisteredBusinessChangeAnswersPage.clickOnLink(RegisteredBusinessChangeAnswersPage.changeIsRcaspTheRegisteredBusinessLink)
 
       And("the Organisation user selects 'No' on '/change-report-for-registered-business' page")
@@ -199,13 +199,13 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks on 'Change' link on the '/your-rcasps' page")
       YourRcaspsPage.clickOnLink(YourRcaspsPage.changeLinkFor("Amazon UK"))
 
-      And("the Organisation user clicks on 'Change organisation name' link on '/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Change organisation name' link on '/change-answers/:RCASPID' page")
       ChangeAmazonAnswersPage.clickOnLink(ChangeAmazonAnswersPage.changeOrganisationNameLink)
 
       And("the Organisation user changes the name in '/change-organisation-name' page")
       OrganisationNameChangeModePage.enterOrgName("New Org Ltd")
 
-      And("the Organisation user clicks on 'Change if the organisation trades under a different name' link in the '/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Change if the organisation trades under a different name' link in the '/change-answers/:RCASPID' page")
       ChangeAmazonAnswersPage.clickOnLink(ChangeAmazonAnswersPage.changeHaveTradingNameLink)
 
       And("the Organisation user selects 'Yes' on the '/change-have-trading-name' page")
@@ -214,13 +214,13 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user enters the trading name in the '/change-trading-name' page")
       TradingNameChangeModePage.enterTradingName("New Trading Name")
 
-      And("the Organisation user clicks on 'Change Unique Taxpayer Reference' link on '/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Change Unique Taxpayer Reference' link on '/change-answers/:RCASPID' page")
       ChangeAmazonAnswersPage.clickOnLink(ChangeAmazonAnswersPage.changeUtrLink)
 
       And("the Organisation user enters the utr in the '/change-utr' page")
       UtrChangeModePage.enterUtr("1234567890")
 
-      And("the Organisation user clicks on 'Change main business address' link on '/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Change main business address' link on '/change-answers/:RCASPID' page")
       ChangeAmazonAnswersPage.clickOnLink(ChangeAmazonAnswersPage.changeMainBusinessAddressLink)
 
       And("the Organisation user enters the postcode and property number on the '/change-find-address' page")
@@ -232,19 +232,19 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user enters the address manually in the '/change-address' page")
       AddressChangeModePage.enterYourAddress("1 Updated Test Street", "Updated Test Town", "AB1 2CD")
 
-      And("the Organisation user clicks on 'Change first contact name' link on '/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Change first contact name' link on '/change-answers/:RCASPID' page")
       ChangeAmazonAnswersPage.clickOnLink(ChangeAmazonAnswersPage.changeContactNameLink)
 
       And("the Organisation user updates the first contact name in the '/change-contact-name' page ")
       ContactNameChangeModePage.enterContactName("Updated First Contact")
 
-      And("the Organisation user clicks on 'Change first contact email address' link on '/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Change first contact email address' link on '/change-answers/:RCASPID' page")
       ChangeAmazonAnswersPage.clickOnLink(ChangeAmazonAnswersPage.changeEmailLink)
 
       And("the Organisation user updates the first contact email in the '/change-email' page ")
       EmailChangeModePage.enterEmail("UpdatedFirstContact@test.com")
 
-      And("the Organisation user clicks on 'Change if we can contact the first contact by phone' link on '/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Change if we can contact the first contact by phone' link on '/change-answers/:RCASPID' page")
       ChangeAmazonAnswersPage.clickOnLink(ChangeAmazonAnswersPage.changeHavePhoneLink)
 
       And("the Organisation user updates the first contact phone preference in the '/change-have-phone' page ")
@@ -253,7 +253,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user enters first contact phone number in the '/change-phone' page ")
       PhoneChangeModePage.enterPhone("1234567890")
 
-      And("the Organisation user clicks on 'Change if the organisation has a second contact' link on '/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Change if the organisation has a second contact' link on '/change-answers/:RCASPID' page")
       ChangeAmazonAnswersPage.clickOnLink(ChangeAmazonAnswersPage.changeHaveSecondContactLink)
 
       And("the Organisation user updates the second contact preference in the '/change-have-second-contact' page ")
@@ -295,25 +295,25 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks on 'Change' link on the '/your-rcasps' page")
       YourRcaspsPage.clickOnLink(YourRcaspsPage.changeLinkFor("Apple"))
 
-      And("the Organisation user clicks on 'Change second contact name' link on '/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Change second contact name' link on '/change-answers/:RCASPID' page")
       ChangeAppleAnswersPage.clickOnLink(ChangeAppleAnswersPage.changeSecondContactNameLink)
 
       And("the Organisation user updates the second contact name in the '/change-second-contact-name' page ")
       SecondContactNameChangeModePage.enterSecondContactName("Second Tester")
 
-      And("the Organisation user clicks on 'Change second contact email address' link on '/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Change second contact email address' link on '/change-answers/:RCASPID' page")
       ChangeAppleAnswersPage.clickOnLink(ChangeAppleAnswersPage.changeSecondContactEmailLink)
 
       And("the Organisation user updates the second contact email in the '/change-second-contact-email' page ")
       SecondContactEmailChangeModePage.enterEmailAddress("second.tester@test.com")
 
-      And("the Organisation user clicks on ' Change if we can contact the second contact by phone' link on '/change-answers/:CARFID' page")
+      And("the Organisation user clicks on ' Change if we can contact the second contact by phone' link on '/change-answers/:RCASPID' page")
       ChangeAppleAnswersPage.clickOnLink(ChangeAppleAnswersPage.changeSecondContactHavePhoneLink)
 
       And("the Organisation user selects 'No' in the '/change-second-contact-have-phone' page ")
       SecondContactHavePhoneChangeModePage.select("No")
 
-      And("the Organisation user clicks on 'Confirm and send' button on '/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Confirm and send' button on '/change-answers/:RCASPID' page")
       ChangeAppleAnswersPage.onPageSubmitById()
 
       Then("the Organisation user is routed to '/details-updated' page")
@@ -335,7 +335,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks on 'Change' link on the '/your-rcasps' page")
       YourRcaspsPage.clickOnLink(YourRcaspsPage.changeLinkFor("Apple"))
 
-      And("the Organisation user clicks on 'Change if this reporting cryptoasset service provider is an organisation or individual' link on '/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Change if this reporting cryptoasset service provider is an organisation or individual' link on '/change-answers/:RCASPID' page")
       ChangeAppleAnswersPage.clickOnLink(ChangeAppleAnswersPage.changeOrganisationOrIndividualLink)
 
       And("the Organisation user selects 'Individual' on the '/change-organisation-or-individual' page")
@@ -383,19 +383,19 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks on 'Change' link on the '/your-rcasps' page for an individual RCASP")
       YourRcaspsPage.clickOnLink(YourRcaspsPage.changeLinkFor("Nemona Champion"))
 
-      And("the Organisation user clicks on 'Change reporting cryptoasset service provider name' link on '/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Change reporting cryptoasset service provider name' link on '/change-answers/:RCASPID' page")
       ChangeNemonaAnswersPage.clickOnLink(ChangeNemonaAnswersPage.changeNameLink)
 
       And("the Organisation user updates the individual RCASP's first name and last name on '/change-individual-name' page")
       IndividualNameChangeModePage.enterIndName("Updated Firstname", "Updated Lastname")
 
-      And("the Organisation user clicks on 'Change National Insurance number' link on '/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Change National Insurance number' link on '/change-answers/:RCASPID' page")
       ChangeNemonaAnswersPage.clickOnLink(ChangeNemonaAnswersPage.changeNiNumberLink)
 
       And("the Organisation user updates the individual RCASP's NI number on '/change-ni-number' page")
       IndividualNiNumberChangeModePage.enterNiNumber("AB234567D")
 
-      And("the Organisation user clicks on 'Change main business address' link on '/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Change main business address' link on '/change-answers/:RCASPID' page")
       ChangeNemonaAnswersPage.clickOnLink(ChangeNemonaAnswersPage.changeMainBusinessAddressLink)
 
       And(
@@ -406,13 +406,13 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks 'Confirm address' button on the '/change-review-address' page")
       ReviewAddressChangeModePage.onPageSubmitById()
 
-      And("the Organisation user clicks on 'Change email address' link on '/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Change email address' link on '/change-answers/:RCASPID' page")
       ChangeNemonaAnswersPage.clickOnLink(ChangeNemonaAnswersPage.changeEmailLink)
 
       And("the Organisation user updates the individual RCASP's email on '/change-individual-name' page")
       IndividualEmailChangeModePage.enterIndEmail("updated.tester@test.com")
 
-      And("the Organisation user clicks on 'Can we contact the RCASP by phone?' link on '/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Can we contact the RCASP by phone?' link on '/change-answers/:RCASPID' page")
       ChangeNemonaAnswersPage.clickOnLink(ChangeNemonaAnswersPage.changeHavePhoneLink)
 
       And("the Organisation user selects 'Yes' on '/change-individual-have-phone' page")
@@ -421,7 +421,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user enters the RCASP's phone number in the '/change-individual-phone' page")
       IndividualPhoneChangeModePage.enterIndPhone("1234567890")
 
-      And("the Organisation user clicks on 'Confirm and send' button on '/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Confirm and send' button on '/change-answers/:RCASPID' page")
       ChangeNemonaAnswersPage.onPageSubmitById()
 
       Then("the Organisation user is routed to '/details-updated' page")
@@ -441,7 +441,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks on 'Change' link on the '/your-rcasps' page")
       YourRcaspsPage.clickOnLink(YourRcaspsPage.changeLinkFor("Nemona Champion"))
 
-      And("the Organisation user clicks on 'Change if this reporting cryptoasset service provider is an organisation or individual' link on '/change-answers/:CARFID' page")
+      And("the Organisation user clicks on 'Change if this reporting cryptoasset service provider is an organisation or individual' link on '/change-answers/:RCASPID' page")
       ChangeNemonaAnswersPage.clickOnLink(ChangeNemonaAnswersPage.changeOrganisationOrIndividualLink)
 
       And("the Organisation user selects 'Organisation' on the '/change-organisation-or-individual' page")
@@ -503,7 +503,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks on 'Remove' link on the '/your-rcasps' page")
       YourRcaspsPage.clickOnLink(YourRcaspsPage.RemoveLinkFor("Amazon UK"))
 
-      And("the Organisation user selects 'No' on the '/user-access/:CARFID' page")
+      And("the Organisation user selects 'No' on the '/user-access/:RCASPID' page")
       RemoveUserAccessPage.select("No")
 
       And("the Organisation user selects 'No' on the 'other-access' page")
