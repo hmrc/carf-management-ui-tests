@@ -28,4 +28,27 @@ object ChangeNemonaAnswersPage extends BasePage {
   val changeNiNumberLink: By                 = By.cssSelector("a[href*='change-ni-number']")
   val changeMainBusinessAddressLink: By      = By.cssSelector("a[href*='change-find-address']")
 
+  val rcaspNameKey: String           = "What is the name of the RCASP?"
+  val niNumberKey: String            = "National Insurance number"
+  val mainBusinessAddressKey: String = "Main business address"
+  val emailKey: String               = "Email address"
+  val havePhoneKey: String           = "Can we contact the RCASP by phone?"
+  val phoneKey: String               = "Phone number"
+
+  def assertUpdatedDetails(
+    rcaspName: String,
+    niNumber: String,
+    addressLines: Seq[String],
+    email: String,
+    havePhone: String,
+    phone: String
+  ): Unit = {
+    assertSummaryListValue(rcaspNameKey, rcaspName)
+    assertSummaryListValue(niNumberKey, niNumber)
+    assertSummaryListLines(mainBusinessAddressKey, addressLines)
+    assertSummaryListValue(emailKey, email)
+    assertSummaryListValue(havePhoneKey, havePhone)
+    assertSummaryListValue(phoneKey, phone)
+  }
+
 }

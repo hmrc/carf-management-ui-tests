@@ -99,6 +99,37 @@ trait BasePage extends BrowserDriver with Matchers with IdGenerators with PageOb
     )
   }
 
+  private def summaryKeyLocator(key: String): By =
+    By.xpath(s"""//dt[contains(@class,'govuk-summary-list__key')][normalize-space()="$key"]""")
+
+  private def summaryValueLocator(key: String): By =
+    By.xpath(
+      s"""//dt[contains(@class,'govuk-summary-list__key')][normalize-space()="$key"]""" +
+        """/following-sibling::dd[contains(@class,'govuk-summary-list__value')][1]"""
+    )
+
+  private def summaryValueText(key: String): String = {
+    val locator = summaryValueLocator(key)
+    fluentWait().until(ExpectedConditions.presenceOfElementLocated(locator))
+    Driver.instance.findElement(locator).getText
+  }
+
+  def assertSummaryListValue(key: String, expectedValue: String): Unit = {
+    onPage()
+    summaryValueText(key).trim shouldBe expectedValue
+  }
+
+  def assertSummaryListLines(key: String, expectedLines: Seq[String]): Unit = {
+    onPage()
+    val actualLines = summaryValueText(key).split("\\R").map(_.trim).filter(_.nonEmpty).toSeq
+    actualLines shouldBe expectedLines
+  }
+
+  def assertSummaryListRowAbsent(key: String): Unit = {
+    onPage()
+    Driver.instance.findElements(summaryKeyLocator(key)).asScala shouldBe empty
+  }
+
   def onPageSubmitById(): Unit = {
     onPage()
     click(submitButtonId)
