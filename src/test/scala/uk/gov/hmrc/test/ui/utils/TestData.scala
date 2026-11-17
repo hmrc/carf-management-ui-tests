@@ -42,10 +42,4 @@ object TestData {
     case _         => throw new IllegalArgumentException(s"Unsupported environment: $env")
   }
 
-  def chooseAddressLines: Seq[String] = env match {
-    case "local"   => Seq("2 Test Street", "Testtown", "ZZ01 1ZZ")
-    case "qa"      => Seq("10 Meyrick Court", "Meyrick Avenue", "Luton", "LU1 5JP")
-    case "staging" => Seq("10 Meyrick Court", "Meyrick Avenue", "Luton", "LU1 5JP")
-    case _         => throw new IllegalArgumentException(s"Unsupported environment: $env")
-  }
 }

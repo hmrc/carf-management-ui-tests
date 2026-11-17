@@ -27,7 +27,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
     // 1. Organisation user without CT-UTR enrolment, with RCASPs added - Navigating to add journey
     // 2. Individual user with RCASPs added - Navigating to add journey
     // 3. Organisation user with CT-UTR enrolment - RCASP is user - Change journey
-    // 4. Organisation user with CT-UTR enrolment - RCASP is user - Change ReportForRegisteredBusiness to false TODO: add content checks for 620
+    // 4. Organisation user with CT-UTR enrolment - RCASP is user - Change ReportForRegisteredBusiness to false
     // 5. Organisation user without CT-UTR enrolment - RCASP is not user - Change journey TODO: add content checks for 620
     // 6. Organisation user without CT-UTR enrolment - RCASP is not user - Second contact details change journey TODO: add content checks for 620
     // 7. Organisation user without CT-UTR enrolment - RCASP is not user - Change to Individual journey TODO: add content checks for 620
@@ -113,13 +113,6 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks on 'Confirm address' button in the '/change-review-address' page")
       ReviewAddressChangeModePage.onPageSubmitById()
 
-      And("the Organisation user sees the updated details on the '/registered-business/change-answers/:RCASPID' page")
-      RegisteredBusinessChangeAnswersPage.assertUpdatedDetails(
-        organisationName = "AutoMatched Org Ltd",
-        hasTradingName = "No",
-        addressLines = TestData.reviewAddressLines
-      )
-
       And("the Organisation user clicks on 'Confirm and send' button in the '/registered-business/change-answers/:RCASPID' page")
       RegisteredBusinessChangeAnswersPage.onPageSubmitById()
 
@@ -182,22 +175,6 @@ class ManageYourRcaspsSpec extends BaseSpec {
 
       And("the Organisation user selects 'Yes' in the '/have-second-contact' page")
       HaveSecondContactPage.select("No")
-
-      And("the Organisation user sees the updated details on the '/manage-your-rcasps/change-answers/:RCASPID' page")
-      ChangeTimmysTurtlesPage.assertUpdatedDetails(
-        registeredBusiness = "No",
-        rcaspType = "Organisation",
-        organisationName = "Hello World Ltd",
-        hasTradingName = "Yes",
-        tradingName = "New World Ltd",
-        utr = "1234567890",
-        addressLines = TestData.chooseAddressLines,
-        firstContactName = "Carf Team",
-        firstContactEmail = "carf.team@outlook.com",
-        firstContactHavePhone = "Yes",
-        firstContactPhone = "07556734510",
-        haveSecondContact = "No"
-      )
 
       And("the Organisation user clicks on 'Confirm and send' button on '/change-answers' page")
       ChangeTimmysTurtlesPage.onPageSubmitById()
@@ -318,23 +295,82 @@ class ManageYourRcaspsSpec extends BaseSpec {
       And("the Organisation user clicks on 'Change' link on the '/your-rcasps' page")
       YourRcaspsPage.clickOnLink(YourRcaspsPage.changeLinkFor("Apple"))
 
+      And("the Organisation user clicks on 'Change organisation name' link on '/change-answers/:RCASPID' page")
+      ChangeAppleAnswersPage.clickOnLink(ChangeAppleAnswersPage.changeOrganisationName)
+
+      And("the Organisation user updates the Organisation name in the '/change-organisation-name' page ")
+      OrganisationNameChangeModePage.enterOrgName("Gala Apple Ltd")
+
+      And("the Organisation user clicks on 'Change the trading name' link on '/change-answers/:RCASPID' page")
+      ChangeAppleAnswersPage.clickOnLink(ChangeAppleAnswersPage.changeTradingName)
+
+      And("the Organisation user updates the Trading name in the '/change-trading-name' page ")
+      TradingNameChangeModePage.enterTradingName("Sweet and Crisp Fruits Ltd")
+
+      And("the Organisation user clicks on 'Change utr' link on '/change-answers/:RCASPID' page")
+      ChangeAppleAnswersPage.clickOnLink(ChangeAppleAnswersPage.changeUtr)
+
+      And("the Organisation user updates the Utr in the '/change-utr' page ")
+      UtrChangeModePage.enterUtr("1234567890")
+
+      And("the Organisation user clicks on 'Change main business address' link on '/change-answers/:RCASPID' page")
+      ChangeAppleAnswersPage.clickOnLink(ChangeAppleAnswersPage.changeMainBusinessAddress)
+
+      And("the organisation user enters the postcode and property number in the '/change-find-address' page")
+      FindAddressChangeModePage.enterPostcodeAndProperty(TestData.postcode, TestData.propertyNumber)
+
+      And("the Organisation user clicks on 'Confirm address' button in the '/change-review-address' page")
+      ReviewAddressChangeModePage.onPageSubmitById()
+
+      And("the Organisation user clicks on 'Change first contact name' link on '/change-answers/:RCASPID' page")
+      ChangeAppleAnswersPage.clickOnLink(ChangeAppleAnswersPage.changeContactName)
+
+      And("the Organisation user updates the first contact name in the '/change-contact-name' page ")
+      ContactNameChangeModePage.enterContactName("Golden Delicious")
+
+      And("the Organisation user clicks on 'Change first contact email' link on '/change-answers/:RCASPID' page")
+      ChangeAppleAnswersPage.clickOnLink(ChangeAppleAnswersPage.changeEmail)
+
+      And("the Organisation user updates the first contact email in the '/change-email' page ")
+      EmailChangeModePage.enterEmail("Golden.Delicious@test.com")
+
+      And("the Organisation user clicks on 'Change first contact phone number' link on '/change-answers/:RCASPID' page")
+      ChangeAppleAnswersPage.clickOnLink(ChangeAppleAnswersPage.changePhone)
+
+      And("the Organisation user updates the first contact phone number in the '/change-phone' page ")
+      PhoneChangeModePage.enterPhone("01234567890")
+
       And("the Organisation user clicks on 'Change second contact name' link on '/change-answers/:RCASPID' page")
       ChangeAppleAnswersPage.clickOnLink(ChangeAppleAnswersPage.changeSecondContactNameLink)
 
       And("the Organisation user updates the second contact name in the '/change-second-contact-name' page ")
-      SecondContactNameChangeModePage.enterSecondContactName("Second Tester")
+      SecondContactNameChangeModePage.enterSecondContactName("Orange Red")
 
       And("the Organisation user clicks on 'Change second contact email address' link on '/change-answers/:RCASPID' page")
       ChangeAppleAnswersPage.clickOnLink(ChangeAppleAnswersPage.changeSecondContactEmailLink)
 
       And("the Organisation user updates the second contact email in the '/change-second-contact-email' page ")
-      SecondContactEmailChangeModePage.enterEmailAddress("second.tester@test.com")
+      SecondContactEmailChangeModePage.enterEmailAddress("Orange.Red@test.com")
 
       And("the Organisation user clicks on ' Change if we can contact the second contact by phone' link on '/change-answers/:RCASPID' page")
       ChangeAppleAnswersPage.clickOnLink(ChangeAppleAnswersPage.changeSecondContactHavePhoneLink)
 
       And("the Organisation user selects 'No' in the '/change-second-contact-have-phone' page ")
       SecondContactHavePhoneChangeModePage.select("No")
+
+      And("the Organisation user sees the updated details on the '/change-answers/:RCASPID' page")
+      ChangeAppleAnswersPage.assertUpdatedDetails(
+        organisationName = "Gala Apple Ltd",
+        tradingName = "Sweet and Crisp Fruits Ltd",
+        utr = "1234567890",
+        addressLines = TestData.reviewAddressLines,
+        firstContactName = "Golden Delicious",
+        firstContactEmail = "Golden.Delicious@test.com",
+        firstContactPhone = "01234567890",
+        secondContactName = "Orange Red",
+        secondContactEmail = "Orange.Red@test.com",
+        secondContactHavePhone = "No"
+      )
 
       And("the Organisation user clicks on 'Confirm and send' button on '/change-answers/:RCASPID' page")
       ChangeAppleAnswersPage.onPageSubmitById()
