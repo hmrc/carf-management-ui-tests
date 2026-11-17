@@ -28,11 +28,11 @@ class ManageYourRcaspsSpec extends BaseSpec {
     // 2. Individual user with RCASPs added - Navigating to add journey
     // 3. Organisation user with CT-UTR enrolment - RCASP is user - Change journey
     // 4. Organisation user with CT-UTR enrolment - RCASP is user - Change ReportForRegisteredBusiness to false
-    // 5. Organisation user without CT-UTR enrolment - RCASP is not user - Change journey TODO: add content checks for 620
-    // 6. Organisation user without CT-UTR enrolment - RCASP is not user - Second contact details change journey TODO: add content checks for 620
-    // 7. Organisation user without CT-UTR enrolment - RCASP is not user - Change to Individual journey TODO: add content checks for 620
-    // 8. Individual RCASP change journey TODO: add content checks for 620
-    // 9. Individual RCASP - change to Organisation journey TODO: add content checks for 620
+    // 5. Organisation user without CT-UTR enrolment - RCASP is not user - Change journey
+    // 6. Organisation user without CT-UTR enrolment - RCASP is not user - Second contact details change journey
+    // 7. Organisation user without CT-UTR enrolment - RCASP is not user - Change to Individual journey
+    // 8. Individual RCASP change journey
+    // 9. Individual RCASP - change to Organisation journey
     // 10. Organisation without CT-UTR enrolment - Remove journey
     // 11. Organisation without CT-UTR enrolment - Change contact details from Service home page
 
@@ -478,7 +478,17 @@ class ManageYourRcaspsSpec extends BaseSpec {
       IndividualHavePhoneChangeModePage.select("Yes")
 
       And("the Organisation user enters the RCASP's phone number in the '/change-individual-phone' page")
-      IndividualPhoneChangeModePage.enterIndPhone("1234567890")
+      IndividualPhoneChangeModePage.enterIndPhone("01234567890")
+
+      And("the Individual user sees the updated details on the '/change-answers/:RCASPID' page")
+      ChangeNemonaAnswersPage.assertUpdatedDetails(
+        rcaspName = "Updated Firstname Updated Lastname",
+        niNumber = "AB234567D",
+        addressLines = TestData.reviewAddressLines,
+        email = "updated.tester@test.com",
+        havePhone = "Yes",
+        phone = "01234567890"
+      )
 
       And("the Organisation user clicks on 'Confirm and send' button on '/change-answers/:RCASPID' page")
       ChangeNemonaAnswersPage.onPageSubmitById()
