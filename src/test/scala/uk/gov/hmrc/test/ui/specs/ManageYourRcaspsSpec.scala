@@ -26,7 +26,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
     // Scenarios covered
     // 1. Organisation user without CT-UTR enrolment, with RCASPs added - Navigating to add journey
     // 2. Individual user with RCASPs added - Navigating to add journey
-    // 3. Organisation user with CT-UTR enrolment - RCASP is user - Change journey TODO: add content checks for 620
+    // 3. Organisation user with CT-UTR enrolment - RCASP is user - Change journey
     // 4. Organisation user with CT-UTR enrolment - RCASP is user - Change ReportForRegisteredBusiness to false TODO: add content checks for 620
     // 5. Organisation user without CT-UTR enrolment - RCASP is not user - Change journey TODO: add content checks for 620
     // 6. Organisation user without CT-UTR enrolment - RCASP is not user - Second contact details change journey TODO: add content checks for 620
@@ -117,7 +117,7 @@ class ManageYourRcaspsSpec extends BaseSpec {
       RegisteredBusinessChangeAnswersPage.assertUpdatedDetails(
         organisationName = "AutoMatched Org Ltd",
         hasTradingName = "No",
-        addressLines = TestData.addressLines
+        addressLines = TestData.reviewAddressLines
       )
 
       And("the Organisation user clicks on 'Confirm and send' button in the '/registered-business/change-answers/:RCASPID' page")
@@ -182,6 +182,22 @@ class ManageYourRcaspsSpec extends BaseSpec {
 
       And("the Organisation user selects 'Yes' in the '/have-second-contact' page")
       HaveSecondContactPage.select("No")
+
+      And("the Organisation user sees the updated details on the '/manage-your-rcasps/change-answers/:RCASPID' page")
+      ChangeTimmysTurtlesPage.assertUpdatedDetails(
+        registeredBusiness = "No",
+        rcaspType = "Organisation",
+        organisationName = "Hello World Ltd",
+        hasTradingName = "Yes",
+        tradingName = "New World Ltd",
+        utr = "1234567890",
+        addressLines = TestData.chooseAddressLines,
+        firstContactName = "Carf Team",
+        firstContactEmail = "carf.team@outlook.com",
+        firstContactHavePhone = "Yes",
+        firstContactPhone = "07556734510",
+        haveSecondContact = "No"
+      )
 
       And("the Organisation user clicks on 'Confirm and send' button on '/change-answers' page")
       ChangeTimmysTurtlesPage.onPageSubmitById()
