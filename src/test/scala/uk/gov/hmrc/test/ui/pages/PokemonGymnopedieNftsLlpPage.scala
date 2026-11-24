@@ -18,7 +18,7 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
 
-object ChangeAppleAnswersPage extends BasePage {
+object PokemonGymnopedieNftsLlpPage extends BasePage {
   override val pageUrl: String = baseUrl + "/manage-your-rcasps/change-answers/ZMCAR0123456786"
 
   val changeOrganisationOrIndividualLink: By = By.cssSelector("a[href*='change-organisation-or-individual']")
